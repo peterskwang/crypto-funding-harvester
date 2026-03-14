@@ -30,7 +30,7 @@ class ExitManager:
             return "funding_neutral"
 
         if max_hold_periods is not None and position.get("funding_periods_held", 0) >= max_hold_periods:
-            return "max_hold"
+            return "max_hold_exceeded"
 
         return None
 

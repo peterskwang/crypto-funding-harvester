@@ -26,13 +26,13 @@ class PositionManager:
 
         multiplier = 0.0
         sorted_thresholds = sorted(multipliers.items())
-        for threshold, mult in sorted_thresholds:
-            if funding_rate <= threshold:
-                multiplier = mult
-                break
-        if multiplier == 0.0 and sorted_thresholds:
-            # fallback to the smallest multiplier (least negative threshold)
+        if sorted_thresholds:
+            # default to the least aggressive multiplier (closest to zero threshold)
             multiplier = sorted_thresholds[-1][1]
+            for threshold, mult in sorted_thresholds:
+                if funding_rate <= threshold:
+                    multiplier = mult
+                    break
 
         position_notional = notional_budget * multiplier
         if position_notional <= 0:

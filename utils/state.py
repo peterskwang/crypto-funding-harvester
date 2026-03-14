@@ -8,7 +8,7 @@ from typing import Any, Dict
 
 def _default_state() -> Dict[str, Any]:
     return {
-        "equity": 0.0,
+        "equity": 10000.0,
         "realized_pnl": 0.0,
         "open_positions": {},
         "funding_history": [],
