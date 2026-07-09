@@ -1,0 +1,40 @@
+{
+  "last_weekly_run": "2026-07-09",
+  "upcoming_universe": [
+    {
+      "ticker": "STDN",
+      "name": "Standard Nuclear, Inc.",
+      "listing_date": "2026-07-16",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": 18.0,
+      "price_high": 21.0,
+      "final_price": null,
+      "total_offer_size": 440737500.0
+    },
+    {
+      "ticker": "TP",
+      "name": "Ticketplus Ltd.",
+      "listing_date": "2026-07-10",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": null,
+      "price_high": null,
+      "final_price": null,
+      "total_offer_size": null
+    },
+    {
+      "ticker": "TARX",
+      "name": "Tarsier Pharma Ltd.",
+      "listing_date": "2026-07-09",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": 8.0,
+      "price_high": 10.0,
+      "final_price": null,
+      "total_offer_size": 57500000.0
+    }
+  ],
+  "analog_groups": {},
+  "note": "FMP-fallback run; no price history available (Polygon network-blocked, FMP free tier blocks chart/quote)"
+}
