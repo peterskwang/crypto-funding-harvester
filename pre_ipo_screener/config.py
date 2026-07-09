@@ -78,9 +78,22 @@ STATE_FILE_PATH = "pre_ipo_screener/state/screener_state.json"
 # -- BACKTEST EXIT TIMING (trading days from entry) --
 # Mirrors the suggested_style buckets in scoring.py so a backtested trade's
 # holding period matches what the live report would have told you to do.
+# These are now MAXIMUM holding windows, not fixed exit days: the actual exit
+# is whichever comes first, the trailing stop or this cap (see backtest.py).
 INTRADAY_EXIT_DAY = 1     # "Day 1-2 momentum trade" -> exit next close
 SWING_EXIT_DAY = 15       # "2-4 week swing hold" -> ~3 weeks
 POSITION_EXIT_DAY = 42    # "Position hold" -> ~2 months
 MOMENTUM_FADE_HOLD_DAYS = 10   # short the post-pop peak, cover ~2 weeks later
 LOCKUP_SHORT_HOLD_DAYS = 30    # short at lockup-window entry, cover ~1 month later
 BACKTEST_REPORTS_DIR = "pre_ipo_screener/reports/backtests"
+
+# -- TRAILING STOP --
+# A fixed "exit in exactly N days" ignores what the price actually did in
+# between -- it holds losers as long as winners and can cut a runner short.
+# A trailing stop lets a trade run and exits on a real reversal instead:
+# longs exit when price closes this far below its running peak since entry;
+# shorts (fade/lockup) cover when price closes this far above its running
+# low since entry. Still capped by the holding windows above. 10% is a
+# standard momentum-trading default, not fit to any particular backtest --
+# tune it here if you have a reason to, same as every other threshold.
+TRAILING_STOP_PCT = 0.10

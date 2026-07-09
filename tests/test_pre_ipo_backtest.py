@@ -41,6 +41,20 @@ def test_simulate_long_trade_swing_style():
     assert trade["return_pct"] == pytest.approx(0.75, rel=1e-3)
 
 
+def test_simulate_long_trade_trailing_stop_exits_before_cap():
+    # Rises to a peak of 13, then gives back 11.5% off the peak -> 10% trailing stop
+    # should trigger at index 4, well before the swing cap (SWING_EXIT_DAY=15).
+    closes = [10, 11, 12, 13, 11.5]
+    bars = _bars([float(c) for c in closes])
+
+    trade = simulate_long_trade({"ticker": "RUNR", "name": "Runner Co"}, bars, "2-4 week swing hold")
+
+    assert trade["entry_price"] == 10.0
+    assert trade["exit_price"] == 11.5
+    assert trade["holding_days"] == 4
+    assert trade["return_pct"] == pytest.approx(0.15, rel=1e-3)
+
+
 def test_simulate_long_trade_position_style_clamps_to_available_bars():
     closes = list(range(10, 40))  # only 30 bars, POSITION_EXIT_DAY=42 exceeds available history
     bars = _bars([float(c) for c in closes])
@@ -63,6 +77,20 @@ def test_simulate_momentum_fade_trade_shorts_the_peak():
     assert trade["return_pct"] == pytest.approx(0.6, rel=1e-3)  # profit since price fell
 
 
+def test_simulate_momentum_fade_trade_trailing_stop_covers_on_rebound():
+    # Peaks at 20 (index 2), falls to a low of 8, then rebounds to 11 -- an 11%
+    # bounce off the low -- which should trigger the 10% trailing-stop cover.
+    closes = [10, 15, 20, 14, 12, 10, 9, 8, 11]
+    bars = _bars([float(c) for c in closes])
+
+    trade = simulate_momentum_fade_trade({"ticker": "BNCE", "name": "Bounce Co"}, bars)
+
+    assert trade["entry_price"] == 20.0
+    assert trade["exit_price"] == 11.0
+    assert trade["holding_days"] == 6
+    assert trade["return_pct"] == pytest.approx(0.45, rel=1e-3)
+
+
 def test_simulate_lockup_short_trade_requires_enough_history():
     short_bars = _bars([float(200 - i) for i in range(50)])  # only 50 trading days, lockup entry needs 90
 
@@ -79,6 +107,21 @@ def test_simulate_lockup_short_trade_computes_return():
     assert trade["exit_price"] == 80.0
     assert trade["return_pct"] == pytest.approx(30 / 110, rel=1e-3)
     assert trade["holding_days"] == 30
+
+
+def test_simulate_lockup_short_trade_trailing_stop_covers_on_rebound():
+    # Declines steadily through the lockup window, then rebounds sharply at
+    # day 100 -- an ~13.9% pop off the running low -- which should trigger the
+    # trailing stop and cover the short at a loss, well before the day-120 cap.
+    closes = [float(200 - i) for i in range(100)] + [115.0] * 30  # 130 bars total
+    bars = _bars(closes)
+
+    trade = simulate_lockup_short_trade({"ticker": "REBD", "name": "Rebound Co"}, bars)
+
+    assert trade["entry_price"] == 110.0
+    assert trade["exit_price"] == 115.0
+    assert trade["holding_days"] == 10
+    assert trade["return_pct"] == pytest.approx(-5 / 110, rel=1e-3)  # loss: covered above entry
 
 
 def test_summarize_trades_computes_win_rate_and_best_worst():

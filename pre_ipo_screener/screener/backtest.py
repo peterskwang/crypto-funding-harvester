@@ -26,13 +26,6 @@ from pre_ipo_screener import config
 from pre_ipo_screener.screener import historical, scoring
 
 
-def _bar_close_at(bars: List[dict], index: int) -> Optional[float]:
-    if not bars:
-        return None
-    index = min(index, len(bars) - 1)
-    return bars[index].get("c")
-
-
 def _bar_date_at(bars: List[dict], index: int) -> Optional[str]:
     if not bars:
         return None
@@ -41,7 +34,7 @@ def _bar_date_at(bars: List[dict], index: int) -> Optional[str]:
     return bar.get("date") or bar.get("t")
 
 
-def _style_exit_day(style: str) -> int:
+def _style_max_hold_day(style: str) -> int:
     if "Day 1-2" in style:
         return config.INTRADAY_EXIT_DAY
     if "swing" in style:
@@ -49,12 +42,39 @@ def _style_exit_day(style: str) -> int:
     return config.POSITION_EXIT_DAY
 
 
+def _trailing_stop_exit_index(closes: List[float], start_index: int, max_index: int, is_long: bool) -> int:
+    """Scans forward from start_index and returns the day the trailing stop
+    triggers, or max_index (clamped to available bars) if it never does.
+
+    Longs exit when price closes TRAILING_STOP_PCT below its running peak
+    since entry; shorts cover when price closes TRAILING_STOP_PCT above its
+    running low since entry.
+    """
+    max_index = min(max_index, len(closes) - 1)
+    extreme = closes[start_index]
+    for i in range(start_index + 1, max_index + 1):
+        price = closes[i]
+        if is_long:
+            extreme = max(extreme, price)
+            if price <= extreme * (1 - config.TRAILING_STOP_PCT):
+                return i
+        else:
+            extreme = min(extreme, price)
+            if price >= extreme * (1 + config.TRAILING_STOP_PCT):
+                return i
+    return max_index
+
+
 def simulate_long_trade(candidate: Dict[str, Any], bars: List[dict], style: str) -> Optional[Dict[str, Any]]:
     if not bars:
         return None
-    entry_price = _bar_close_at(bars, 0)
-    exit_index = _style_exit_day(style)
-    exit_price = _bar_close_at(bars, exit_index)
+    closes = [b.get("c") for b in bars if b.get("c") is not None]
+    if not closes:
+        return None
+    entry_price = closes[0]
+    max_index = _style_max_hold_day(style)
+    exit_index = _trailing_stop_exit_index(closes, 0, max_index, is_long=True)
+    exit_price = closes[exit_index]
     if not entry_price or not exit_price:
         return None
 
@@ -67,7 +87,7 @@ def simulate_long_trade(candidate: Dict[str, Any], bars: List[dict], style: str)
         "entry_price": round(entry_price, 2),
         "exit_date": _bar_date_at(bars, exit_index),
         "exit_price": round(exit_price, 2),
-        "holding_days": min(exit_index, len(bars) - 1),
+        "holding_days": exit_index,
         "return_pct": (exit_price - entry_price) / entry_price,
     }
 
@@ -77,9 +97,10 @@ def simulate_momentum_fade_trade(candidate: Dict[str, Any], bars: List[dict]) ->
     if not closes:
         return None
     peak_index = closes.index(max(closes))
-    exit_index = min(peak_index + config.MOMENTUM_FADE_HOLD_DAYS, len(bars) - 1)
+    max_index = peak_index + config.MOMENTUM_FADE_HOLD_DAYS
     entry_price = closes[peak_index]
-    exit_price = _bar_close_at(bars, exit_index)
+    exit_index = _trailing_stop_exit_index(closes, peak_index, max_index, is_long=False)
+    exit_price = closes[exit_index]
     if not entry_price or not exit_price or exit_index <= peak_index:
         return None
 
@@ -102,9 +123,11 @@ def simulate_lockup_short_trade(candidate: Dict[str, Any], bars: List[dict]) -> 
     if len(bars) - 1 < entry_index:
         return None  # not enough trading history to have reached the lockup window
 
-    exit_index = min(entry_index + config.LOCKUP_SHORT_HOLD_DAYS, len(bars) - 1)
-    entry_price = _bar_close_at(bars, entry_index)
-    exit_price = _bar_close_at(bars, exit_index)
+    closes = [b.get("c") for b in bars if b.get("c") is not None]
+    max_index = entry_index + config.LOCKUP_SHORT_HOLD_DAYS
+    entry_price = closes[entry_index]
+    exit_index = _trailing_stop_exit_index(closes, entry_index, max_index, is_long=False)
+    exit_price = closes[exit_index]
     if not entry_price or not exit_price:
         return None
 
