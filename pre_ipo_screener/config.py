@@ -15,6 +15,16 @@ EXCLUDE_NAME_KEYWORDS = [
 ]
 EXCLUDE_TICKER_SUFFIXES = ["U", "W", "R", "WS", "RT"]  # common SPAC unit/warrant/rights suffixes
 
+# This is a US-tickers screener, but the IPO calendar feed includes foreign
+# listings (Jakarta, Shanghai, Istanbul, Tokyo, etc.) tagged with non-US
+# exchange codes and dotted ticker suffixes (e.g. "EMAS.JK", "603459.SS").
+# Restrict to primary US listing venues -- covers both plain names (FMP) and
+# MIC codes (Polygon).
+US_EXCHANGES = {
+    "NASDAQ", "NYSE", "NYSE AMERICAN", "NYSEAMERICAN", "AMEX", "NYSEARCA", "CBOE", "BATS",
+    "XNAS", "XNYS", "XASE", "ARCX", "BATS", "IEXG",
+}
+
 # Serial SPAC sponsors number their shells ("Acquisition I Corp", "Mountain Crest
 # Acquisition 6 Corp", "Legato Merger Corp. IV", "GigCapital9 Corp.", "Cantor
 # Equity Partners VII") — a numbered/roman-numeraled Acquisition/Capital/

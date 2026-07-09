@@ -18,13 +18,19 @@ def _first_present(record: Dict[str, Any], keys: List[str]) -> Optional[Any]:
     return None
 
 
-def _is_noise(name: str, ticker: str, security_type: Optional[str]) -> bool:
+def _is_noise(name: str, ticker: str, security_type: Optional[str], exchange: Optional[str]) -> bool:
     upper_name = (name or "").upper()
     if any(keyword in upper_name for keyword in config.EXCLUDE_NAME_KEYWORDS):
         return True
     if any(pattern.search(upper_name) for pattern in _NAME_NOISE_PATTERNS):
         return True
     if security_type and security_type.upper() not in ("CS", "ADRC", "ADR"):
+        return True
+    # US-tickers screener: drop foreign listings (dotted ticker suffixes like
+    # "EMAS.JK", "603459.SS", or a non-US exchange code).
+    if "." in ticker:
+        return True
+    if exchange and exchange.upper() not in config.US_EXCHANGES:
         return True
     for suffix in config.EXCLUDE_TICKER_SUFFIXES:
         if ticker.endswith(suffix) and len(ticker) > 1:
@@ -49,7 +55,8 @@ def normalize_ipo_record(record: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         return None
 
     security_type = _first_present(record, ["security_type"])
-    if _is_noise(str(name), str(ticker), security_type):
+    exchange = _first_present(record, ["primary_exchange", "exchange"])
+    if _is_noise(str(name), str(ticker), security_type, exchange):
         return None
 
     price_low = _first_present(record, ["min_offer_price", "lowest_offer_price"])

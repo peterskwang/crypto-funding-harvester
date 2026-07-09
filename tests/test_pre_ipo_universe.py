@@ -35,6 +35,15 @@ TRUST_NOISE = {
     "security_type": "CS",
 }
 
+# Real foreign-listing examples pulled from a live full-year IPO calendar --
+# this is a US-tickers screener, but the feed includes global exchanges.
+FOREIGN_LISTING_NOISE = [
+    {"ticker": "EMAS.JK", "issuer_name": "PT Merdeka Gold Resources Tbk", "listing_date": "2025-09-23", "exchange": "JSE"},
+    {"ticker": "603459.SS", "issuer_name": "Jiangxi Redboard Tech Co. Ltd.", "listing_date": "2026-03-27", "exchange": "SHH"},
+    {"ticker": "NA.F", "issuer_name": "Exasol AG", "listing_date": "2026-03-11", "exchange": "XETRA"},
+    {"ticker": "ZGYO", "issuer_name": "Z Gayrimenkul Yatirim", "listing_date": "2026-01-01", "exchange": "IST"},
+]
+
 # Real numbered-SPAC-shell examples pulled from a live IPO calendar during
 # validation that slipped past a plain "ACQUISITION CORP" substring check.
 NUMBERED_SPAC_NOISE = [
@@ -77,6 +86,11 @@ def test_normalize_ipo_record_drops_spac_units():
 
 def test_normalize_ipo_record_drops_trust():
     assert normalize_ipo_record(TRUST_NOISE) is None
+
+
+def test_normalize_ipo_record_drops_foreign_listings():
+    for record in FOREIGN_LISTING_NOISE:
+        assert normalize_ipo_record(record) is None, f"{record['ticker']} should have been filtered as a foreign listing"
 
 
 def test_normalize_ipo_record_drops_numbered_spac_shells():
