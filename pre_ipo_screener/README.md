@@ -49,6 +49,22 @@ Reports are written to `pre_ipo_screener/reports/YYYY-MM-DD.md`. Weekly runs
 cache the universe and analog groups to `pre_ipo_screener/state/screener_state.json`
 so daily runs stay cheap.
 
+## Backtesting
+`screener/backtest.py` replays the exact scoring rules (`score_upcoming`,
+`score_fade_candidates`) against realized IPO price history, sorted
+chronologically so each candidate's analog groups only ever include IPOs that
+listed strictly before it (no lookahead). It simulates the resulting trade's
+entry/exit price per its suggested style (day-1/2 momentum, swing hold,
+position hold, momentum-fade short, lockup-expiry short) and reports realized
+returns — no fabricated numbers, real fills only.
+
+```bash
+python -m pre_ipo_screener.run_backtest --start 2025-07-09 --end 2026-07-09
+```
+Requires the same `POLYGON_API_KEY` + network access as the live runs (a
+year-long backtest pulls a full year of daily bars per candidate, so expect a
+lot of API calls). Report saved to `pre_ipo_screener/reports/backtests/`.
+
 ## Configuration
 Edit `config.py` to adjust lookahead/lookback windows, deal-size tiers,
 scoring weights, fade/lockup thresholds, and volatility cutoffs for the
@@ -56,6 +72,7 @@ suggested holding style.
 
 ## Tests
 ```bash
-pytest tests/test_pre_ipo_universe.py tests/test_pre_ipo_scoring.py tests/test_pre_ipo_report.py
+pytest tests/test_pre_ipo_universe.py tests/test_pre_ipo_scoring.py tests/test_pre_ipo_report.py tests/test_pre_ipo_backtest.py
 ```
-All tests mock `PolygonClient` — no live network calls or API key required.
+All tests mock `PolygonClient` (or feed synthetic bars directly) — no live
+network calls or API key required.

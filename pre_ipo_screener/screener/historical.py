@@ -72,6 +72,7 @@ def compute_post_ipo_performance(client: PolygonClient, candidate: Dict[str, Any
                 "current_price": None,
                 "decay_from_high": None,
                 "trading_days_elapsed": 0,
+                "bars": [],
             }
         )
         return result
@@ -105,6 +106,7 @@ def compute_post_ipo_performance(client: PolygonClient, candidate: Dict[str, Any
             "current_price": current_price,
             "decay_from_high": decay_from_high,
             "trading_days_elapsed": len(closes),
+            "bars": bars,
         }
     )
     return result

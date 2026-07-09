@@ -64,3 +64,13 @@ MODERATE_VOLATILITY_CUTOFF = 0.03
 TOP_N_PER_BUCKET = 5
 REPORTS_DIR = "pre_ipo_screener/reports"
 STATE_FILE_PATH = "pre_ipo_screener/state/screener_state.json"
+
+# -- BACKTEST EXIT TIMING (trading days from entry) --
+# Mirrors the suggested_style buckets in scoring.py so a backtested trade's
+# holding period matches what the live report would have told you to do.
+INTRADAY_EXIT_DAY = 1     # "Day 1-2 momentum trade" -> exit next close
+SWING_EXIT_DAY = 15       # "2-4 week swing hold" -> ~3 weeks
+POSITION_EXIT_DAY = 42    # "Position hold" -> ~2 months
+MOMENTUM_FADE_HOLD_DAYS = 10   # short the post-pop peak, cover ~2 weeks later
+LOCKUP_SHORT_HOLD_DAYS = 30    # short at lockup-window entry, cover ~1 month later
+BACKTEST_REPORTS_DIR = "pre_ipo_screener/reports/backtests"

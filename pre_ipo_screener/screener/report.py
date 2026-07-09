@@ -91,3 +91,73 @@ def save_report(content: str, run_date: Optional[dt.date] = None, reports_dir: O
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
     return str(path)
+
+
+def _trades_table(trades: List[Dict[str, Any]]) -> str:
+    if not trades:
+        return "_No trades triggered by the scoring rules in this date range._\n"
+    lines = [
+        "| Ticker | Direction | Style | Entry Date | Entry Price | Exit Date | Exit Price | Holding Days | Return |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for t in sorted(trades, key=lambda x: x["entry_date"] or ""):
+        lines.append(
+            f"| **{t['ticker']}** | {t['direction']} | {t['style']} | {t['entry_date']} | "
+            f"${t['entry_price']:.2f} | {t['exit_date']} | ${t['exit_price']:.2f} | "
+            f"{t['holding_days']} | {_fmt_pct(t['return_pct'])} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+def _bucket_summary_line(label: str, stats: Dict[str, Any]) -> str:
+    if not stats or stats.get("count", 0) == 0:
+        return f"- **{label}**: no trades"
+    return (
+        f"- **{label}**: {stats['count']} trades, "
+        f"{stats['win_rate']:.0%} win rate, "
+        f"{_fmt_pct(stats['avg_return'])} avg return"
+    )
+
+
+def render_backtest_report(
+    trades: List[Dict[str, Any]],
+    summary: Dict[str, Any],
+    start_date: dt.date,
+    end_date: dt.date,
+    data_source: str,
+) -> str:
+    sections = [
+        f"# Pre-IPO Screener Backtest — {start_date.isoformat()} to {end_date.isoformat()}",
+        "",
+        DISCLAIMER,
+        f"\n> **Data source:** {data_source}. Trades are simulated (no slippage/fees/borrow cost modeled) "
+        "and replay the same scoring rules used in live reports, with analog groups built only from IPOs "
+        "that listed strictly before each candidate (no lookahead).",
+        "",
+        "## Summary",
+    ]
+
+    if summary.get("count", 0) == 0:
+        sections.append("_No trades triggered by the scoring rules in this date range._")
+    else:
+        sections.append(_bucket_summary_line("Overall", summary["overall"]))
+        sections.append(_bucket_summary_line("Long", summary["long"]))
+        sections.append(_bucket_summary_line("Short", summary["short"]))
+        best, worst = summary["best_trade"], summary["worst_trade"]
+        sections.append(
+            f"- **Best trade**: {best['ticker']} {best['direction']} ({best['style']}) {_fmt_pct(best['return_pct'])}"
+        )
+        sections.append(
+            f"- **Worst trade**: {worst['ticker']} {worst['direction']} ({worst['style']}) {_fmt_pct(worst['return_pct'])}"
+        )
+
+    sections += ["", "## All Trades", _trades_table(trades)]
+    return "\n".join(sections)
+
+
+def save_backtest_report(content: str, start_date: dt.date, end_date: dt.date, reports_dir: Optional[str] = None) -> str:
+    reports_dir = reports_dir or config.BACKTEST_REPORTS_DIR
+    path = Path(reports_dir) / f"{start_date.isoformat()}_to_{end_date.isoformat()}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return str(path)

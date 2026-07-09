@@ -97,6 +97,11 @@ def _fetch_and_normalize(client: PolygonClient, listing_date_gte: str, listing_d
     return candidates
 
 
+def build_universe_for_range(client: PolygonClient, start_date: dt.date, end_date: dt.date) -> List[Dict[str, Any]]:
+    """Fetches operating-company IPOs that listed within an arbitrary date range (for backtesting)."""
+    return _fetch_and_normalize(client, start_date.isoformat(), end_date.isoformat())
+
+
 def build_upcoming_universe(client: PolygonClient, today: Optional[dt.date] = None) -> List[Dict[str, Any]]:
     """Fetches operating-company IPOs listing in the next LOOKAHEAD_DAYS."""
     today = today or dt.date.today()

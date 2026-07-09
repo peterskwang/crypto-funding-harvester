@@ -1,6 +1,12 @@
 import datetime as dt
 
-from pre_ipo_screener.screener.report import render_report, save_report
+from pre_ipo_screener.screener.backtest import summarize_trades
+from pre_ipo_screener.screener.report import (
+    render_backtest_report,
+    render_report,
+    save_backtest_report,
+    save_report,
+)
 
 RUN_DATE = dt.date(2026, 7, 9)
 
@@ -64,4 +70,50 @@ def test_save_report_writes_file(tmp_path):
     saved = tmp_path / "2026-07-09.md"
     assert saved.exists()
     assert saved.read_text(encoding="utf-8") == content
+    assert path == str(saved)
+
+
+BACKTEST_TRADES = [
+    {
+        "ticker": "ACRB", "name": "Acme Robotics", "direction": "LONG", "style": "2-4 week swing hold",
+        "entry_date": "2026-01-02", "entry_price": 10.0, "exit_date": "2026-01-23", "exit_price": 11.5,
+        "holding_days": 15, "return_pct": 0.15,
+    },
+    {
+        "ticker": "HOTX", "name": "Hot Co", "direction": "SHORT", "style": "Momentum fade",
+        "entry_date": "2026-02-01", "entry_price": 20.0, "exit_date": "2026-02-15", "exit_price": 16.0,
+        "holding_days": 10, "return_pct": 0.20,
+    },
+]
+
+
+def test_render_backtest_report_includes_trades_and_summary():
+    summary = summarize_trades(BACKTEST_TRADES)
+
+    content = render_backtest_report(BACKTEST_TRADES, summary, dt.date(2026, 1, 1), dt.date(2026, 3, 1), data_source="Polygon.io (live)")
+
+    assert "Not investment advice" in content
+    assert "Polygon.io (live)" in content
+    assert "ACRB" in content
+    assert "HOTX" in content
+    assert "Overall" in content
+    assert "Best trade" in content
+
+
+def test_render_backtest_report_handles_no_trades():
+    summary = summarize_trades([])
+
+    content = render_backtest_report([], summary, dt.date(2026, 1, 1), dt.date(2026, 3, 1), data_source="synthetic (test)")
+
+    assert "No trades triggered" in content
+
+
+def test_save_backtest_report_writes_file(tmp_path):
+    summary = summarize_trades(BACKTEST_TRADES)
+    content = render_backtest_report(BACKTEST_TRADES, summary, dt.date(2026, 1, 1), dt.date(2026, 3, 1), data_source="Polygon.io (live)")
+
+    path = save_backtest_report(content, dt.date(2026, 1, 1), dt.date(2026, 3, 1), reports_dir=str(tmp_path))
+
+    saved = tmp_path / "2026-01-01_to_2026-03-01.md"
+    assert saved.exists()
     assert path == str(saved)
