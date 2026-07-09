@@ -37,7 +37,18 @@ into its own repo later without restructuring.
 # from the repo root
 pip install -r requirements.txt
 export POLYGON_API_KEY=your_key_here   # or set it in the environment config so it persists
+# -- or, as an alternative data source --
+export FMP_API_KEY=your_key_here
 ```
+Both `data/polygon_client.py` and `data/fmp_client.py` expose the same
+interface with fields already normalized to the same shape, so the rest of
+the screener never needs to know which one is in use.
+`data/client_factory.py`'s `get_client()` picks Polygon if
+`POLYGON_API_KEY` is set, otherwise falls back to `FMP_API_KEY`. Whichever
+provider's domain (`api.polygon.io` or `financialmodelingprep.com`) is
+reachable from this environment's network policy determines which one
+actually works — as of this writing both are blocked in this sandbox, so a
+live run needs one of them allowlisted first.
 
 ## Running
 ```bash
@@ -61,18 +72,28 @@ returns — no fabricated numbers, real fills only.
 ```bash
 python -m pre_ipo_screener.run_backtest --start 2025-07-09 --end 2026-07-09
 ```
-Requires the same `POLYGON_API_KEY` + network access as the live runs (a
-year-long backtest pulls a full year of daily bars per candidate, so expect a
-lot of API calls). Report saved to `pre_ipo_screener/reports/backtests/`.
+Requires the same data-source setup as the live runs (a year-long backtest
+pulls a full year of daily bars per candidate, so expect a lot of API calls
+regardless of provider). Report saved to `pre_ipo_screener/reports/backtests/`.
+
+Exits are trailing stops, not fixed dates: a long exits when price closes
+`TRAILING_STOP_PCT` (10% default) below its running peak since entry; a short
+covers on the same giveback above its running low. Both are capped by the
+per-style max holding window in `config.py`. This is a deliberate choice over
+a fixed "exit in N days" rule, which ignores what price did in between and
+holds losers as long as winners — but it is not free of tradeoffs: a trailing
+stop can also get whipsawed out by a single volatile gap before a recovery.
+There is no single "correct" exit rule; this is a documented, tunable
+assumption like every other threshold in `config.py`, not a fitted parameter.
 
 ## Configuration
 Edit `config.py` to adjust lookahead/lookback windows, deal-size tiers,
-scoring weights, fade/lockup thresholds, and volatility cutoffs for the
-suggested holding style.
+scoring weights, fade/lockup thresholds, trailing-stop percentage, and
+volatility cutoffs for the suggested holding style.
 
 ## Tests
 ```bash
-pytest tests/test_pre_ipo_universe.py tests/test_pre_ipo_scoring.py tests/test_pre_ipo_report.py tests/test_pre_ipo_backtest.py
+pytest tests/test_pre_ipo_universe.py tests/test_pre_ipo_scoring.py tests/test_pre_ipo_report.py tests/test_pre_ipo_backtest.py tests/test_pre_ipo_data_clients.py
 ```
-All tests mock `PolygonClient` (or feed synthetic bars directly) — no live
+All tests mock the HTTP layer (or feed synthetic bars directly) — no live
 network calls or API key required.

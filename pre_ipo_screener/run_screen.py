@@ -10,13 +10,15 @@ import argparse
 import datetime as dt
 
 from pre_ipo_screener import config
-from pre_ipo_screener.data.polygon_client import PolygonAuthError, PolygonClient
+from pre_ipo_screener.data.client_factory import NoDataSourceConfigured, get_client
+from pre_ipo_screener.data.fmp_client import FMPAuthError
+from pre_ipo_screener.data.polygon_client import PolygonAuthError
 from pre_ipo_screener.screener import historical, report, scoring, universe
 from utils.logger import configure_logging
 from utils.state import load_state, save_state
 
 
-def _annotate_sector(client: PolygonClient, candidates: list) -> list:
+def _annotate_sector(client, candidates: list) -> list:
     for candidate in candidates:
         candidate["sector_tag"] = historical.get_sector_tag(client, candidate)
     return candidates
@@ -29,7 +31,7 @@ def _score_shorts(recent_with_perf: list, today: dt.date) -> list:
     return scoring.rank_candidates(flagged, key="conviction")
 
 
-def run_weekly(client: PolygonClient, logger, today: dt.date):
+def run_weekly(client, logger, today: dt.date):
     upcoming = universe.build_upcoming_universe(client, today)
     recent = universe.build_recent_universe(client, today)
     logger.info("Universe sizes: upcoming=%d recent=%d", len(upcoming), len(recent))
@@ -57,7 +59,7 @@ def run_weekly(client: PolygonClient, logger, today: dt.date):
     return content, path, long_candidates, short_candidates
 
 
-def run_daily(client: PolygonClient, logger, today: dt.date):
+def run_daily(client, logger, today: dt.date):
     state = load_state(config.STATE_FILE_PATH)
     upcoming = state.get("upcoming_universe") or []
     analog_groups = state.get("analog_groups") or {}
@@ -85,14 +87,14 @@ def main() -> None:
 
     logger = configure_logging()
     today = dt.date.today()
-    client = PolygonClient()
 
     try:
+        client = get_client()
         if args.mode == "weekly":
             content, path, longs, shorts = run_weekly(client, logger, today)
         else:
             content, path, longs, shorts = run_daily(client, logger, today)
-    except PolygonAuthError as exc:
+    except (NoDataSourceConfigured, PolygonAuthError, FMPAuthError) as exc:
         logger.error(str(exc))
         raise SystemExit(1) from exc
 
