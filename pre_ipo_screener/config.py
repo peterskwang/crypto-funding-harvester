@@ -5,14 +5,32 @@ LOOKAHEAD_DAYS = 45   # how far out to scan for upcoming IPOs
 LOOKBACK_DAYS = 120   # how far back to pull the historical reference pool
 
 # -- NOISE FILTER --
-# Polygon's IPO feed is dominated by ETFs, SPAC shells (units/warrants/rights),
-# trusts, and bond funds. Drop anything whose name/security type matches these.
+# The IPO calendar feed is dominated by ETFs, SPAC shells (units/warrants/rights),
+# trusts, and bond/leveraged funds. Drop anything whose name/security type matches these.
 EXCLUDE_NAME_KEYWORDS = [
-    "ETF", "TRUST", "ACQUISITION CORP", "ACQUISITION CORPORATION",
+    "ETF", "ETN", "TRUST", "ACQUISITION CORP", "ACQUISITION CORPORATION",
     "ACQUISITION COMPANY", "UNITS", "WARRANT", "RIGHTS", " FUND",
-    "BOND", "DEPOSITARY SHARES", "WHEN ISSUED",
+    "BOND", "DEPOSITARY SHARES", "WHEN ISSUED", "SPAC", "BLANK CHECK",
+    "LIQUIDITY OPPORTUNITY VEHICLE",
 ]
 EXCLUDE_TICKER_SUFFIXES = ["U", "W", "R", "WS", "RT"]  # common SPAC unit/warrant/rights suffixes
+
+# Serial SPAC sponsors number their shells ("Acquisition I Corp", "Mountain Crest
+# Acquisition 6 Corp", "Legato Merger Corp. IV", "GigCapital9 Corp.", "Cantor
+# Equity Partners VII") — a numbered/roman-numeraled Acquisition/Capital/
+# Investment/Merger/Partners entity is almost always a blank-check company, not
+# an operating business. Matched against the uppercased name. Known tradeoff:
+# this can also catch a handful of legitimate, long-established closed-end
+# funds/BDCs that happen to use "Capital Corp" naming (e.g. Oxford Lane Capital
+# Corp) — acceptable here since those aren't the kind of momentum IPO candidate
+# this tool is built to surface anyway.
+_ROMAN_OR_DIGIT = r"(?:I|II|III|IV|V|VI|VII|VIII|IX|X|\d{1,2})"
+EXCLUDE_NAME_REGEXES = [
+    r"ACQUISITIONS?\b.{0,25}\b(?:CORP|CO|COMPANY|INC|LTD|LIMITED)\b",
+    rf"\b(?:CORP|CORPORATION|PARTNERS|HOLDINGS)\s+{_ROMAN_OR_DIGIT}\b",
+    rf"(?:CAPITAL|INVESTMENT|MERGER)\s*{_ROMAN_OR_DIGIT}\b",
+    r"\b(?:CAPITAL|INVESTMENT|MERGER)\s+CORP\b",
+]
 
 # -- DEAL SIZE TIERS (total offer size in USD) --
 DEAL_SIZE_TIERS = {

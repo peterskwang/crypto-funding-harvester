@@ -2,10 +2,13 @@
 from __future__ import annotations
 
 import datetime as dt
+import re
 from typing import Any, Dict, List, Optional
 
 from pre_ipo_screener import config
 from pre_ipo_screener.data.polygon_client import PolygonClient
+
+_NAME_NOISE_PATTERNS = [re.compile(pattern) for pattern in config.EXCLUDE_NAME_REGEXES]
 
 
 def _first_present(record: Dict[str, Any], keys: List[str]) -> Optional[Any]:
@@ -18,6 +21,8 @@ def _first_present(record: Dict[str, Any], keys: List[str]) -> Optional[Any]:
 def _is_noise(name: str, ticker: str, security_type: Optional[str]) -> bool:
     upper_name = (name or "").upper()
     if any(keyword in upper_name for keyword in config.EXCLUDE_NAME_KEYWORDS):
+        return True
+    if any(pattern.search(upper_name) for pattern in _NAME_NOISE_PATTERNS):
         return True
     if security_type and security_type.upper() not in ("CS", "ADRC", "ADR"):
         return True
