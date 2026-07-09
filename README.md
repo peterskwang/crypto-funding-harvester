@@ -35,3 +35,6 @@ pytest
 
 ## Configuration
 Edit `config.py` to adjust thresholds, leverage, or allocation parameters. The default state file can be reset by replacing `state/strategy_state.json` with the template contents from the brief.
+
+## Other projects in this repo
+- [`pre_ipo_screener/`](pre_ipo_screener/README.md) — a pre-IPO stock screener/research tool, temporarily housed here pending its own repo. Unrelated to the funding harvester above.
