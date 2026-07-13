@@ -1,40 +1,86 @@
 {
-  "last_weekly_run": "2026-07-09",
+  "last_weekly_run": "2026-07-13",
   "upcoming_universe": [
     {
       "ticker": "STDN",
       "name": "Standard Nuclear, Inc.",
       "listing_date": "2026-07-16",
+      "total_offer_size": 440737500.0,
+      "sector_tag": "ENERGY",
       "exchange": "NYSE",
-      "ipo_status": null,
-      "price_low": 18.0,
-      "price_high": 21.0,
-      "final_price": null,
-      "total_offer_size": 440737500.0
+      "score": 65.8,
+      "direction": "LONG",
+      "rationale": [
+        "Deal size tier: mid (offer size $440,737,500)",
+        "No historical analog group match \u2014 neutral weighting applied",
+        "Listing date 2026-07-16 (NYSE)"
+      ]
     },
     {
       "ticker": "TP",
       "name": "Ticketplus Ltd.",
-      "listing_date": "2026-07-10",
+      "listing_date": "2026-07-15",
+      "total_offer_size": null,
+      "sector_tag": "OTHER",
       "exchange": "NYSE",
-      "ipo_status": null,
-      "price_low": null,
-      "price_high": null,
-      "final_price": null,
-      "total_offer_size": null
-    },
-    {
-      "ticker": "TARX",
-      "name": "Tarsier Pharma Ltd.",
-      "listing_date": "2026-07-09",
-      "exchange": "NYSE",
-      "ipo_status": null,
-      "price_low": 8.0,
-      "price_high": 10.0,
-      "final_price": null,
-      "total_offer_size": 57500000.0
+      "score": 58.9,
+      "direction": "LONG",
+      "rationale": [
+        "Deal size tier: unknown (offer size $0)",
+        "No historical analog group match \u2014 neutral weighting applied",
+        "Listing date 2026-07-15 (NYSE)"
+      ]
     }
   ],
-  "analog_groups": {},
-  "note": "FMP-fallback run; no price history available (Polygon network-blocked, FMP free tier blocks chart/quote)"
+  "analog_groups": {
+    "OTHER|mid": {
+      "sector": "OTHER",
+      "tier": "mid",
+      "count": 2,
+      "avg_week1_return": 0.0002999999999999999,
+      "avg_month1_return": 0.0451,
+      "tickers": [
+        "JAN",
+        "DPC"
+      ]
+    },
+    "OTHER|large": {
+      "sector": "OTHER",
+      "tier": "large",
+      "count": 6,
+      "avg_week1_return": 0.0026333333333333287,
+      "avg_month1_return": 0.06080000000000001,
+      "tickers": [
+        "ARXS",
+        "PS",
+        "CBRS",
+        "INIO",
+        "QNT",
+        "BSP"
+      ]
+    },
+    "BIOTECH|mid": {
+      "sector": "BIOTECH",
+      "tier": "mid",
+      "count": 2,
+      "avg_week1_return": -0.15605000000000002,
+      "avg_month1_return": -0.14035,
+      "tickers": [
+        "KLRA",
+        "PBLS"
+      ]
+    },
+    "ENERGY|large": {
+      "sector": "ENERGY",
+      "tier": "large",
+      "count": 2,
+      "avg_week1_return": 0.04285,
+      "avg_month1_return": -0.01045,
+      "tickers": [
+        "XE",
+        "FRVO"
+      ]
+    }
+  },
+  "note": "FMP-fallback run; real price data for a 12-ticker deal-size sample (not full ~98-ticker recent universe, to control conversation-context cost)"
 }
