@@ -3,6 +3,7 @@ import datetime as dt
 import pytest
 
 from eurusd_strategy.strategy.backtest import (
+    _bracket_exit,
     _trailing_stop_exit_index,
     run_backtest,
     summarize_trades,
@@ -70,6 +71,73 @@ def test_run_backtest_trades_do_not_overlap():
     trades = run_backtest(bars, use_ema_filter=False, use_delta_filter=False, max_hold_days=5)
     for a, b in zip(trades, trades[1:]):
         assert b["entry_date"] > a["exit_date"]
+
+
+def test_bracket_exit_long_hits_take_profit():
+    bars = _bars(
+        closes=[10.0, 10.6, 10.4],
+        highs=[10.0, 10.6, 10.4],
+        lows=[10.0, 10.4, 10.2],
+    )
+    # entry_price=10.0, tp=5% -> 10.5; bar 1's high (10.6) reaches it first.
+    exit_index, exit_price = _bracket_exit(bars, entry_index=0, max_index=2, is_long=True,
+                                            entry_price=10.0, tp_pct=0.05, sl_pct=0.02)
+    assert exit_index == 1
+    assert exit_price == pytest.approx(10.5)
+
+
+def test_bracket_exit_long_hits_stop_loss():
+    bars = _bars(
+        closes=[10.0, 9.7, 9.5],
+        highs=[10.0, 9.8, 9.6],
+        lows=[10.0, 9.6, 9.4],
+    )
+    # entry_price=10.0, sl=2% -> 9.8; bar 1's low (9.6) breaches it.
+    exit_index, exit_price = _bracket_exit(bars, entry_index=0, max_index=2, is_long=True,
+                                            entry_price=10.0, tp_pct=0.05, sl_pct=0.02)
+    assert exit_index == 1
+    assert exit_price == pytest.approx(9.8)
+
+
+def test_bracket_exit_same_bar_ambiguity_resolves_to_stop_loss():
+    # A single wide bar whose range spans both the TP and SL levels --
+    # intrabar order is unknowable from daily OHLC, so SL is assumed to win.
+    bars = _bars(closes=[10.0, 10.0], highs=[10.0, 11.0], lows=[10.0, 9.0])
+    exit_index, exit_price = _bracket_exit(bars, entry_index=0, max_index=1, is_long=True,
+                                            entry_price=10.0, tp_pct=0.05, sl_pct=0.05)
+    assert exit_index == 1
+    assert exit_price == pytest.approx(9.5)  # the SL level, not the TP level
+
+
+def test_bracket_exit_never_triggers_clamps_to_max_index_close():
+    bars = _bars(closes=[10.0, 10.05, 10.08], highs=[10.0, 10.05, 10.08], lows=[10.0, 10.04, 10.07])
+    exit_index, exit_price = _bracket_exit(bars, entry_index=0, max_index=2, is_long=True,
+                                            entry_price=10.0, tp_pct=0.05, sl_pct=0.05)
+    assert exit_index == 2
+    assert exit_price == pytest.approx(10.08)  # falls back to the bar's close
+
+
+def test_bracket_exit_short_direction_mirrors_long():
+    bars = _bars(
+        closes=[10.0, 9.4, 9.6],
+        highs=[10.0, 9.6, 9.7],
+        lows=[10.0, 9.3, 9.5],
+    )
+    # short entry_price=10.0, tp=5% -> 9.5; bar 1's low (9.3) reaches it.
+    exit_index, exit_price = _bracket_exit(bars, entry_index=0, max_index=2, is_long=False,
+                                            entry_price=10.0, tp_pct=0.05, sl_pct=0.02)
+    assert exit_index == 1
+    assert exit_price == pytest.approx(9.5)
+
+
+def test_run_backtest_bracket_mode_uses_config_defaults_when_unspecified():
+    closes = [1.10 + 0.01 * i for i in range(30)]
+    bars = _bars(closes)
+    trades = run_backtest(bars, use_ema_filter=False, use_delta_filter=False, exit_mode="bracket")
+    # Just confirming it runs end-to-end without error and returns trades
+    # shaped like the trailing-mode ones.
+    for t in trades:
+        assert "return_pct" in t and "exit_price" in t
 
 
 def test_summarize_trades_empty():

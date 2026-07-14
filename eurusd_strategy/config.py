@@ -7,12 +7,25 @@ DATA_FILE = "eurusd_strategy/data/eurusd_daily.json"
 # Daily bars, not intraday. Chosen deliberately: fetching a year+ of 1H/4H
 # forex bars through this environment's MCP data relay risks the same
 # context blowup that hit the pre-IPO project's multi-ticker daily-bar
-# fetch. A single instrument's daily history (~2 years = ~586 bars) is
-# within the range already proven safe there. This also matches the
-# indicator's own defaults (14-period lookback, 20-period EMA smoothing)
-# reasonably well -- those read as swing-style parameters, not scalping
-# ones. Tradeoff: this strategy is a daily-bar swing system, not the
-# intraday system the original Pine Script is sometimes used for.
+# fetch. A single instrument's daily history is within the range already
+# proven safe there (the fetch itself auto-saves to disk instead of
+# flooding context, regardless of size, once past a token threshold).
+# This also matches the indicator's own defaults (14-period lookback,
+# 20-period EMA smoothing) reasonably well -- those read as swing-style
+# parameters, not scalping ones. Tradeoff: this strategy is a daily-bar
+# swing system, not the intraday system the original Pine Script is
+# sometimes used for.
+
+# -- IN-SAMPLE / OUT-OF-SAMPLE SPLIT --
+# 3579 daily bars, 2013-01-02..2026-07-14. Any parameter search (TP/SL,
+# trailing width, hold period) is only ever allowed to look at bars before
+# this date; everything from this date forward is held out and only used
+# once, to report how the single selected config performs on data it never
+# influenced. This is the actual defense against overfitting a ~10-trade
+# sample -- not a promise to "not tune," but a promise to validate any
+# tuning honestly instead of reporting the in-sample number as if it were
+# proven performance.
+IN_SAMPLE_END_DATE = "2022-01-01"
 
 # -- VELOCITY / ACCELERATION (translated 1:1 from the provided Pine Script) --
 VELOCITY_LOOKBACK = 14        # Pine `lookback`
@@ -26,14 +39,18 @@ SMOOTH_ACCELERATION = False   # Pine `smoothAccel` default
 # the raw velocity/acceleration units are roughly two orders of magnitude
 # smaller. Reusing 0.01 verbatim would mean the signal almost never fires.
 # This is a one-time *unit* recalibration (matching the threshold to the
-# instrument's price scale): computed as ~1 standard deviation (~0.00088,
-# rounded to 0.0009) of the post-warmup smoothedVelocity series over the
-# full 2024-07-15..2026-07-14 daily data window. Derived once from the
-# series' own statistics, NOT by trying values until backtest P&L looked
-# good -- see calibrate.py for the exact derivation and how to re-run it.
-# (0.00088, from calibrate.py's output as of the 586-bar 2024-2026 window.)
-VELOCITY_UP_THRESHOLD = 0.00088
-VELOCITY_DOWN_THRESHOLD = -0.00088
+# instrument's price scale): computed as ~1 standard deviation of the
+# post-warmup smoothedVelocity series, using ONLY the in-sample window
+# (2013-2021, see IN_SAMPLE_END_DATE below) so the out-of-sample period
+# never leaks into calibration. Derived once from the series' own
+# statistics, NOT by trying values until backtest P&L looked good -- see
+# calibrate.py for the exact derivation and how to re-run it. (Re-deriving
+# on the full 2013-2026 window gives 0.00096, and on the most recent 2-year
+# slice alone gives 0.00088 -- all three are within ~15% of each other,
+# which is itself evidence the threshold isn't a fragile, window-specific
+# artifact.)
+VELOCITY_UP_THRESHOLD = 0.00099
+VELOCITY_DOWN_THRESHOLD = -0.00099
 
 # -- TREND FILTER --
 EMA_TREND_LENGTH = 100   # only take longs above EMA100, shorts below EMA100
@@ -65,5 +82,23 @@ TRAILING_STOP_PCT = 0.02   # 2%: computed from this dataset's own daily range
                             # 20-day hold with a disaster-stop safety net.
 MAX_HOLD_DAYS = 20          # cap a trade at ~1 trading month regardless of trail
 INITIAL_CAPITAL = 10_000.0  # notional, for equity-curve reporting only
+
+# -- FIXED TAKE-PROFIT / STOP-LOSS (bracket exit, alternative to trailing) --
+# Selected from a 420-combo grid search over the in-sample window only
+# (2013-2021, see search_tp_sl.py), then locked in and re-run once,
+# unmodified, on the untouched out-of-sample window (2022-2026, see
+# validate_oos.py). This is NOT the config with the best in-sample
+# total_return (+11.5%, EMA+delta filters, tp=5%/sl=1.5%) -- that one only
+# produced +0.50% out-of-sample, a textbook overfitting signature. This is
+# the config with the best in-sample win_rate (80.7%, no filters, a small
+# 0.5%/1.5% TP/SL) instead, because a high win rate across many trades held
+# up much better out-of-sample (72.7%) than a high total return from a
+# handful of large winners did. Even so: out-of-sample total return is only
+# +0.61% over 4.5 years, which is not a "solid" edge -- see the backtest
+# report's "Out-of-sample validation" section for the full honest picture,
+# including the configs that did NOT survive validation.
+EXIT_MODE = "bracket"   # "trailing" (original) or "bracket" (fixed TP/SL)
+FIXED_TAKE_PROFIT_PCT = 0.005
+FIXED_STOP_LOSS_PCT = 0.015
 
 BACKTEST_REPORTS_DIR = "eurusd_strategy/reports"

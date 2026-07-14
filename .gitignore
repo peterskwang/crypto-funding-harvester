@@ -3,3 +3,7 @@ __pycache__/
 .venv/
 .env
 .DS_Store
+
+# Reproducible intermediate outputs (regenerate via search_tp_sl.py / validate_oos.py)
+eurusd_strategy/data/search_results_in_sample.json
+eurusd_strategy/data/oos_validation_results.json

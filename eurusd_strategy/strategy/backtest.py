@@ -51,13 +51,27 @@ def run_backtest(
     bars: List[dict],
     use_ema_filter: bool = True,
     use_delta_filter: bool = True,
+    exit_mode: Optional[str] = None,
     trailing_stop_pct: Optional[float] = None,
+    take_profit_pct: Optional[float] = None,
+    stop_loss_pct: Optional[float] = None,
     max_hold_days: Optional[int] = None,
 ) -> List[Dict[str, Any]]:
     """Walks the bar series once, one position at a time (no pyramiding,
     no overlapping trades). A signal that fires while already in a trade
-    is ignored -- it is not a live system's job to re-enter mid-trade."""
+    is ignored -- it is not a live system's job to re-enter mid-trade.
+
+    exit_mode="trailing" (default-compatible): trailing stop off closes,
+    capped at max_hold_days -- as before.
+    exit_mode="bracket": fixed take-profit / stop-loss off intrabar
+    high/low, capped at max_hold_days. If both would hit on the same bar,
+    the stop-loss is assumed to hit first (the conservative assumption,
+    since daily OHLC doesn't tell us the intrabar order of events).
+    """
+    exit_mode = exit_mode or config.EXIT_MODE
     trailing_stop_pct = trailing_stop_pct if trailing_stop_pct is not None else config.TRAILING_STOP_PCT
+    take_profit_pct = take_profit_pct if take_profit_pct is not None else config.FIXED_TAKE_PROFIT_PCT
+    stop_loss_pct = stop_loss_pct if stop_loss_pct is not None else config.FIXED_STOP_LOSS_PCT
     max_hold_days = max_hold_days if max_hold_days is not None else config.MAX_HOLD_DAYS
 
     signals = generate_signals(bars, use_ema_filter, use_delta_filter)
@@ -78,10 +92,13 @@ def run_backtest(
         entry_price = bars[entry_index]["open"]
         max_index = min(entry_index + max_hold_days, n - 1)
 
-        exit_index = _trailing_stop_exit_index(
-            closes, entry_index, max_index, is_long, trailing_stop_pct
-        )
-        exit_price = closes[exit_index]
+        if exit_mode == "bracket":
+            exit_index, exit_price = _bracket_exit(
+                bars, entry_index, max_index, is_long, entry_price, take_profit_pct, stop_loss_pct
+            )
+        else:
+            exit_index = _trailing_stop_exit_index(closes, entry_index, max_index, is_long, trailing_stop_pct)
+            exit_price = closes[exit_index]
 
         return_pct = (
             (exit_price - entry_price) / entry_price
@@ -119,6 +136,38 @@ def _trailing_stop_exit_index(closes, start_index, max_index, is_long, pct):
             if price >= extreme * (1 + pct):
                 return i
     return max_index
+
+
+def _bracket_exit(bars, entry_index, max_index, is_long, entry_price, tp_pct, sl_pct):
+    """Fixed take-profit / stop-loss checked against each bar's intrabar
+    high/low, starting on the entry bar itself (a gap-and-run entry bar can
+    hit its own bracket same-day). Returns (exit_index, exit_price) where
+    exit_price is the bracket level itself, not the bar's close -- a
+    realistic fill assumption for a limit/stop order, not a close-based
+    approximation like the trailing-stop mode uses."""
+    max_index = min(max_index, len(bars) - 1)
+    if is_long:
+        tp_price = entry_price * (1 + tp_pct) if tp_pct else None
+        sl_price = entry_price * (1 - sl_pct) if sl_pct else None
+    else:
+        tp_price = entry_price * (1 - tp_pct) if tp_pct else None
+        sl_price = entry_price * (1 + sl_pct) if sl_pct else None
+
+    for i in range(entry_index, max_index + 1):
+        bar = bars[i]
+        if is_long:
+            hit_sl = sl_price is not None and bar["low"] <= sl_price
+            hit_tp = tp_price is not None and bar["high"] >= tp_price
+        else:
+            hit_sl = sl_price is not None and bar["high"] >= sl_price
+            hit_tp = tp_price is not None and bar["low"] <= tp_price
+
+        if hit_sl:  # same-bar ambiguity resolved conservatively: SL wins
+            return i, sl_price
+        if hit_tp:
+            return i, tp_price
+
+    return max_index, bars[max_index]["close"]
 
 
 def summarize_trades(trades: List[Dict[str, Any]]) -> Dict[str, Any]:
