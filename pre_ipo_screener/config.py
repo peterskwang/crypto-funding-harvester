@@ -13,7 +13,11 @@ EXCLUDE_NAME_KEYWORDS = [
     "BOND", "DEPOSITARY SHARES", "WHEN ISSUED", "SPAC", "BLANK CHECK",
     "LIQUIDITY OPPORTUNITY VEHICLE",
 ]
-EXCLUDE_TICKER_SUFFIXES = ["U", "W", "R", "WS", "RT"]  # common SPAC unit/warrant/rights suffixes
+EXCLUDE_TICKER_SUFFIXES = ["WS", "RT"]  # common SPAC unit/warrant/rights suffixes
+# Single-letter suffixes (U/W/R) were dropped: "UNITS"/"WARRANT"/"RIGHTS" above
+# already catch real SPAC securities by name, and a bare trailing U/W/R is too
+# common in ordinary tickers -- it wrongly dropped CSQR (Csquare, Inc., a real
+# $1.55B IPO) found during a live daily run on 2026-07-14.
 
 # This is a US-tickers screener, but the IPO calendar feed includes foreign
 # listings (Jakarta, Shanghai, Istanbul, Tokyo, etc.) tagged with non-US

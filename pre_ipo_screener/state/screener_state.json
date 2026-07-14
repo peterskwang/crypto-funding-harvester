@@ -1,14 +1,19 @@
 {
   "last_weekly_run": "2026-07-13",
+  "last_daily_run": "2026-07-14",
   "upcoming_universe": [
     {
       "ticker": "STDN",
       "name": "Standard Nuclear, Inc.",
       "listing_date": "2026-07-16",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": 18.0,
+      "price_high": 21.0,
+      "final_price": null,
       "total_offer_size": 440737500.0,
       "sector_tag": "ENERGY",
-      "exchange": "NYSE",
-      "score": 65.8,
+      "score": 66.4,
       "direction": "LONG",
       "rationale": [
         "Deal size tier: mid (offer size $440,737,500)",
@@ -17,13 +22,36 @@
       ]
     },
     {
+      "ticker": "CSQR",
+      "name": "Csquare, Inc.",
+      "listing_date": "2026-07-16",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": 23.0,
+      "price_high": 27.0,
+      "final_price": null,
+      "total_offer_size": 1552500000.0,
+      "sector_tag": "OTHER",
+      "score": 63.3,
+      "direction": "LONG",
+      "rationale": [
+        "Deal size tier: large (offer size $1,552,500,000)",
+        "Analog group OTHER/large (n=6) averaged +0.3% in week 1",
+        "Listing date 2026-07-16 (NYSE)"
+      ]
+    },
+    {
       "ticker": "TP",
       "name": "Ticketplus Ltd.",
       "listing_date": "2026-07-15",
+      "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": null,
+      "price_high": null,
+      "final_price": null,
       "total_offer_size": null,
       "sector_tag": "OTHER",
-      "exchange": "NYSE",
-      "score": 58.9,
+      "score": 59.4,
       "direction": "LONG",
       "rationale": [
         "Deal size tier: unknown (offer size $0)",
@@ -82,5 +110,5 @@
       ]
     }
   },
-  "note": "FMP-fallback run; real price data for a 12-ticker deal-size sample (not full ~98-ticker recent universe, to control conversation-context cost)"
+  "note": "Daily light check; noise-filter bug fixed (removed single-letter ticker suffixes), CSQR now correctly included"
 }

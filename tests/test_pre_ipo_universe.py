@@ -66,6 +66,10 @@ LEGIT_LOOKALIKES = [
     {"ticker": "HMH", "issuer_name": "HMH Holding Inc. Class A Common Stock", "listing_date": "2026-04-01"},
     {"ticker": "PAYP", "issuer_name": "PayPay Corporation", "listing_date": "2026-03-12"},
     {"ticker": "MAKO", "issuer_name": "Mako Mining Corp", "listing_date": "2026-03-30"},
+    # Found during a live daily run (2026-07-14): a $1.55B real IPO wrongly
+    # dropped because its ticker happened to end in "R", which the old
+    # EXCLUDE_TICKER_SUFFIXES heuristic mistook for a SPAC-rights ticker.
+    {"ticker": "CSQR", "issuer_name": "Csquare, Inc.", "listing_date": "2026-07-16", "primary_exchange": "NYSE"},
 ]
 
 
