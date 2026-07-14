@@ -38,3 +38,4 @@ Edit `config.py` to adjust thresholds, leverage, or allocation parameters. The d
 
 ## Other projects in this repo
 - [`pre_ipo_screener/`](pre_ipo_screener/README.md) — a pre-IPO stock screener/research tool, temporarily housed here pending its own repo. Unrelated to the funding harvester above.
+- [`eurusd_strategy/`](eurusd_strategy/README.md) — a EURUSD velocity/acceleration swing strategy with backtest report, temporarily housed here pending its own repo. Unrelated to the funding harvester above.
