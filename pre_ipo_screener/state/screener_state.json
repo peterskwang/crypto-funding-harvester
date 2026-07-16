@@ -1,6 +1,6 @@
 {
   "last_weekly_run": "2026-07-13",
-  "last_daily_run": "2026-07-15",
+  "last_daily_run": "2026-07-16",
   "upcoming_universe": [
     {
       "ticker": "STDN",
@@ -111,5 +111,5 @@
     }
   },
   "note": "Daily light check; noise-filter bug fixed (removed single-letter ticker suffixes), CSQR now correctly included",
-  "notes": "FMP MCP fallback (no live network access this env). Real-path python -m pre_ipo_screener.run_screen --mode daily failed (missing POLYGON_API_KEY/FMP_API_KEY). Fetched fresh bars for 19 recently-listed substantive tickers via FMP chart tool; lockup-window membership computed by date arithmetic across the full noise-filtered ~135-ticker recent universe (needs no price data). Notable: SWMR and AVEX newly qualify as momentum_fade (dramatic post-IPO drawdowns); ARXS and MAIR newly crossed into the 90-180d lockup-expiry window today."
+  "notes": "FMP MCP fallback (no live network access this env). Real-path failed (missing key). Refreshed BSP/SWMR/AVEX with latest close; recomputed lockup-window membership by date arithmetic. Notable: KLRA and ALMR newly crossed into the 90-180d lockup window today; AVEX also crossed into lockup window (already flagged via momentum_fade). TP (listed 2026-07-15) dropped from LONG to WATCH now that it can no longer be scored on listing-date proximity."
 }
