@@ -1,0 +1,647 @@
+[
+{
+"date": "2026-04-21 06:00:00",
+"currency": "GBP",
+"event": "Unemployment Rate (Feb)"
+},
+{
+"date": "2026-04-21 09:00:00",
+"currency": "EUR",
+"event": "ZEW Economic Sentiment Index (Apr)"
+},
+{
+"date": "2026-04-21 12:30:00",
+"currency": "USD",
+"event": "Retail Sales MoM (Mar)"
+},
+{
+"date": "2026-04-22 06:00:00",
+"currency": "GBP",
+"event": "Inflation Rate YoY (Mar)"
+},
+{
+"date": "2026-04-22 06:00:00",
+"currency": "GBP",
+"event": "CPI YoY (Mar)"
+},
+{
+"date": "2026-04-24 06:00:00",
+"currency": "GBP",
+"event": "Retail Sales MoM (Mar)"
+},
+{
+"date": "2026-04-24 08:00:00",
+"currency": "EUR",
+"event": "Ifo Business Climate (Apr)"
+},
+{
+"date": "2026-04-27 06:00:00",
+"currency": "EUR",
+"event": "Consumer Confidence (May)"
+},
+{
+"date": "2026-04-28 14:00:00",
+"currency": "USD",
+"event": "CB Consumer Confidence (Apr)"
+},
+{
+"date": "2026-04-29 12:30:00",
+"currency": "USD",
+"event": "Housing Starts (Feb)"
+},
+{
+"date": "2026-04-29 12:30:00",
+"currency": "USD",
+"event": "Durable Goods Orders MoM (Mar)"
+},
+{
+"date": "2026-04-29 12:30:00",
+"currency": "USD",
+"event": "Housing Starts (Mar)"
+},
+{
+"date": "2026-04-29 18:00:00",
+"currency": "USD",
+"event": "Fed Interest Rate Decision"
+},
+{
+"date": "2026-04-29 18:00:00",
+"currency": "USD",
+"event": "FOMC Economic Projections"
+},
+{
+"date": "2026-04-29 18:30:00",
+"currency": "USD",
+"event": "Fed Press Conference"
+},
+{
+"date": "2026-04-29 18:30:00",
+"currency": "USD",
+"event": "Press Conference"
+},
+{
+"date": "2026-04-30 11:00:00",
+"currency": "GBP",
+"event": "Interest Rate Decision (Apr)"
+},
+{
+"date": "2026-04-30 11:00:00",
+"currency": "GBP",
+"event": "BoE Interest Rate Decision"
+},
+{
+"date": "2026-04-30 12:15:00",
+"currency": "EUR",
+"event": "Deposit Facility Rate (Apr)"
+},
+{
+"date": "2026-04-30 12:15:00",
+"currency": "EUR",
+"event": "Interest Rate Decision (Apr)"
+},
+{
+"date": "2026-04-30 12:30:00",
+"currency": "USD",
+"event": "Personal Spending MoM (Mar)"
+},
+{
+"date": "2026-04-30 12:30:00",
+"currency": "USD",
+"event": "Personal Income MoM (Mar)"
+},
+{
+"date": "2026-04-30 12:30:00",
+"currency": "USD",
+"event": "Core PCE Price Index MoM (Mar)"
+},
+{
+"date": "2026-04-30 12:45:00",
+"currency": "EUR",
+"event": "ECB Press Conference"
+},
+{
+"date": "2026-05-01 14:00:00",
+"currency": "USD",
+"event": "ISM Manufacturing PMI (Apr)"
+},
+{
+"date": "2026-05-05 14:00:00",
+"currency": "USD",
+"event": "JOLTs Job Openings (Mar)"
+},
+{
+"date": "2026-05-05 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing Prices (Apr)"
+},
+{
+"date": "2026-05-05 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing PMI (Apr)"
+},
+{
+"date": "2026-05-05 14:00:00",
+"currency": "USD",
+"event": "ISM Services PMI (Apr)"
+},
+{
+"date": "2026-05-08 06:00:00",
+"currency": "EUR",
+"event": "Balance of Trade (Mar)"
+},
+{
+"date": "2026-05-08 12:30:00",
+"currency": "USD",
+"event": "Non Farm Payrolls (Apr)"
+},
+{
+"date": "2026-05-08 12:30:00",
+"currency": "USD",
+"event": "Unemployment Rate (Apr)"
+},
+{
+"date": "2026-05-11 14:00:00",
+"currency": "USD",
+"event": "Existing Home Sales (Apr)"
+},
+{
+"date": "2026-05-12 06:00:00",
+"currency": "EUR",
+"event": "CPI MoM (Apr)"
+},
+{
+"date": "2026-05-12 09:00:00",
+"currency": "EUR",
+"event": "ZEW Economic Sentiment Index (May)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "Core CPI MoM (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate MoM (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate YoY (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate YoY (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate MoM (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "CPI MoM (Apr)"
+},
+{
+"date": "2026-05-12 12:30:00",
+"currency": "USD",
+"event": "CPI YoY (Apr)"
+},
+{
+"date": "2026-05-13 12:30:00",
+"currency": "USD",
+"event": "Producer Price Index MoM (Apr)"
+},
+{
+"date": "2026-05-14 06:00:00",
+"currency": "GBP",
+"event": "Gross Domestic Product MoM (Mar)"
+},
+{
+"date": "2026-05-14 12:30:00",
+"currency": "USD",
+"event": "Retail Sales MoM (Apr)"
+},
+{
+"date": "2026-05-19 06:00:00",
+"currency": "GBP",
+"event": "Unemployment Rate (Mar)"
+},
+{
+"date": "2026-05-20 06:00:00",
+"currency": "GBP",
+"event": "Inflation Rate YoY (Apr)"
+},
+{
+"date": "2026-05-20 06:00:00",
+"currency": "GBP",
+"event": "CPI YoY (Apr)"
+},
+{
+"date": "2026-05-20 09:00:00",
+"currency": "EUR",
+"event": "CPI YoY (Apr)"
+},
+{
+"date": "2026-05-20 18:00:00",
+"currency": "USD",
+"event": "FOMC Minutes"
+},
+{
+"date": "2026-05-21 12:30:00",
+"currency": "USD",
+"event": "Housing Starts (Apr)"
+},
+{
+"date": "2026-05-22 06:00:00",
+"currency": "EUR",
+"event": "Consumer Confidence (Jun)"
+},
+{
+"date": "2026-05-22 06:00:00",
+"currency": "EUR",
+"event": "Gross Domestic Product QoQ (Q1)"
+},
+{
+"date": "2026-05-22 06:00:00",
+"currency": "GBP",
+"event": "Retail Sales MoM (Apr)"
+},
+{
+"date": "2026-05-22 08:00:00",
+"currency": "EUR",
+"event": "Ifo Business Climate (May)"
+},
+{
+"date": "2026-05-26 14:00:00",
+"currency": "USD",
+"event": "CB Consumer Confidence (May)"
+},
+{
+"date": "2026-05-27 17:00:00",
+"currency": "EUR",
+"event": "ECB Press Conference"
+},
+{
+"date": "2026-05-28 12:30:00",
+"currency": "USD",
+"event": "Core PCE Price Index MoM (Apr)"
+},
+{
+"date": "2026-05-28 12:30:00",
+"currency": "USD",
+"event": "Personal Income MoM (Apr)"
+},
+{
+"date": "2026-05-28 12:30:00",
+"currency": "USD",
+"event": "Durable Goods Orders MoM (Apr)"
+},
+{
+"date": "2026-06-01 14:00:00",
+"currency": "USD",
+"event": "ISM Manufacturing PMI (May)"
+},
+{
+"date": "2026-06-02 14:00:00",
+"currency": "USD",
+"event": "JOLTs Job Openings (Apr)"
+},
+{
+"date": "2026-06-03 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing PMI (May)"
+},
+{
+"date": "2026-06-03 14:00:00",
+"currency": "USD",
+"event": "ISM Services PMI (May)"
+},
+{
+"date": "2026-06-03 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing Prices (May)"
+},
+{
+"date": "2026-06-05 12:30:00",
+"currency": "USD",
+"event": "Unemployment Rate (May)"
+},
+{
+"date": "2026-06-05 12:30:00",
+"currency": "USD",
+"event": "Non Farm Payrolls (May)"
+},
+{
+"date": "2026-06-09 06:00:00",
+"currency": "EUR",
+"event": "Balance of Trade (Apr)"
+},
+{
+"date": "2026-06-09 14:00:00",
+"currency": "USD",
+"event": "Existing Home Sales (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate YoY (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate YoY (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "CPI MoM (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate MoM (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate MoM (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "Core CPI MoM (May)"
+},
+{
+"date": "2026-06-10 12:30:00",
+"currency": "USD",
+"event": "CPI YoY (May)"
+},
+{
+"date": "2026-06-11 12:15:00",
+"currency": "EUR",
+"event": "Interest Rate Decision (Jun)"
+},
+{
+"date": "2026-06-11 12:15:00",
+"currency": "EUR",
+"event": "Deposit Facility Rate (Jun)"
+},
+{
+"date": "2026-06-11 12:30:00",
+"currency": "USD",
+"event": "Producer Price Index MoM (May)"
+},
+{
+"date": "2026-06-11 12:45:00",
+"currency": "EUR",
+"event": "ECB Press Conference"
+},
+{
+"date": "2026-06-12 06:00:00",
+"currency": "EUR",
+"event": "CPI MoM (May)"
+},
+{
+"date": "2026-06-12 06:00:00",
+"currency": "GBP",
+"event": "Gross Domestic Product MoM (Apr)"
+},
+{
+"date": "2026-06-16 09:00:00",
+"currency": "EUR",
+"event": "ZEW Economic Sentiment Index (Jun)"
+},
+{
+"date": "2026-06-16 12:30:00",
+"currency": "USD",
+"event": "Housing Starts (May)"
+},
+{
+"date": "2026-06-17 06:00:00",
+"currency": "GBP",
+"event": "CPI YoY (May)"
+},
+{
+"date": "2026-06-17 06:00:00",
+"currency": "GBP",
+"event": "Inflation Rate YoY (May)"
+},
+{
+"date": "2026-06-17 09:00:00",
+"currency": "EUR",
+"event": "CPI YoY (May)"
+},
+{
+"date": "2026-06-17 18:00:00",
+"currency": "USD",
+"event": "Fed Interest Rate Decision"
+},
+{
+"date": "2026-06-17 18:00:00",
+"currency": "USD",
+"event": "FOMC Economic Projections"
+},
+{
+"date": "2026-06-17 18:30:00",
+"currency": "USD",
+"event": "Fed Press Conference"
+},
+{
+"date": "2026-06-17 18:30:00",
+"currency": "USD",
+"event": "Press Conference"
+},
+{
+"date": "2026-06-18 06:00:00",
+"currency": "GBP",
+"event": "Unemployment Rate (Apr)"
+},
+{
+"date": "2026-06-18 11:00:00",
+"currency": "GBP",
+"event": "Interest Rate Decision (Jun)"
+},
+{
+"date": "2026-06-18 11:00:00",
+"currency": "GBP",
+"event": "BoE Interest Rate Decision"
+},
+{
+"date": "2026-06-19 06:00:00",
+"currency": "GBP",
+"event": "Retail Sales MoM (May)"
+},
+{
+"date": "2026-06-24 08:00:00",
+"currency": "EUR",
+"event": "Ifo Business Climate (Jun)"
+},
+{
+"date": "2026-06-25 06:00:00",
+"currency": "EUR",
+"event": "Consumer Confidence (Jul)"
+},
+{
+"date": "2026-06-25 12:30:00",
+"currency": "USD",
+"event": "Personal Income MoM (May)"
+},
+{
+"date": "2026-06-25 12:30:00",
+"currency": "USD",
+"event": "GDP Growth Rate QoQ (Q1)"
+},
+{
+"date": "2026-06-25 12:30:00",
+"currency": "USD",
+"event": "Core PCE Price Index MoM (May)"
+},
+{
+"date": "2026-06-25 12:30:00",
+"currency": "USD",
+"event": "Gross Domestic Product QoQ (Q1)"
+},
+{
+"date": "2026-06-25 12:30:00",
+"currency": "USD",
+"event": "Durable Goods Orders MoM (May)"
+},
+{
+"date": "2026-06-30 06:00:00",
+"currency": "GBP",
+"event": "Gross Domestic Product YoY (Q1)"
+},
+{
+"date": "2026-06-30 06:00:00",
+"currency": "GBP",
+"event": "Gross Domestic Product QoQ (Q1)"
+},
+{
+"date": "2026-06-30 14:00:00",
+"currency": "USD",
+"event": "CB Consumer Confidence (Jun)"
+},
+{
+"date": "2026-06-30 14:00:00",
+"currency": "USD",
+"event": "JOLTs Job Openings (May)"
+},
+{
+"date": "2026-07-01 09:00:00",
+"currency": "EUR",
+"event": "Inflation Rate YoY (Jun)"
+},
+{
+"date": "2026-07-01 09:00:00",
+"currency": "EUR",
+"event": "CPI YoY (Jun)"
+},
+{
+"date": "2026-07-01 14:00:00",
+"currency": "USD",
+"event": "ISM Manufacturing PMI (Jun)"
+},
+{
+"date": "2026-07-02 12:30:00",
+"currency": "USD",
+"event": "Non Farm Payrolls (Jun)"
+},
+{
+"date": "2026-07-02 12:30:00",
+"currency": "USD",
+"event": "Unemployment Rate (Jun)"
+},
+{
+"date": "2026-07-06 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing Prices (Jun)"
+},
+{
+"date": "2026-07-06 14:00:00",
+"currency": "USD",
+"event": "ISM Non-Manufacturing PMI (Jun)"
+},
+{
+"date": "2026-07-06 14:00:00",
+"currency": "USD",
+"event": "ISM Services PMI (Jun)"
+},
+{
+"date": "2026-07-08 18:00:00",
+"currency": "USD",
+"event": "FOMC Minutes"
+},
+{
+"date": "2026-07-09 06:00:00",
+"currency": "EUR",
+"event": "Balance of Trade (May)"
+},
+{
+"date": "2026-07-09 14:00:00",
+"currency": "USD",
+"event": "Existing Home Sales (Jun)"
+},
+{
+"date": "2026-07-10 06:00:00",
+"currency": "EUR",
+"event": "CPI MoM (Jun)"
+},
+{
+"date": "2026-07-10 15:00:00",
+"currency": "USD",
+"event": "Monetary Policy Report"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "CPI MoM (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate YoY (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "Inflation Rate MoM (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate YoY (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "CPI YoY (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "Core CPI MoM (Jun)"
+},
+{
+"date": "2026-07-14 12:30:00",
+"currency": "USD",
+"event": "Core Inflation Rate MoM (Jun)"
+},
+{
+"date": "2026-07-15 12:30:00",
+"currency": "USD",
+"event": "Producer Price Index MoM (Jun)"
+},
+{
+"date": "2026-07-16 06:00:00",
+"currency": "GBP",
+"event": "Gross Domestic Product MoM (May)"
+},
+{
+"date": "2026-07-16 12:30:00",
+"currency": "USD",
+"event": "Retail Sales MoM (Jun)"
+}
+]
