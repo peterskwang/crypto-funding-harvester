@@ -1,6 +1,6 @@
 {
   "last_weekly_run": "2026-07-13",
-  "last_daily_run": "2026-07-16",
+  "last_daily_run": "2026-07-17",
   "upcoming_universe": [
     {
       "ticker": "STDN",
@@ -111,5 +111,5 @@
     }
   },
   "note": "Daily light check; noise-filter bug fixed (removed single-letter ticker suffixes), CSQR now correctly included",
-  "notes": "FMP MCP fallback (no live network access this env). Real-path failed (missing key). Refreshed BSP/SWMR/AVEX with latest close; recomputed lockup-window membership by date arithmetic. Notable: KLRA and ALMR newly crossed into the 90-180d lockup window today; AVEX also crossed into lockup window (already flagged via momentum_fade). TP (listed 2026-07-15) dropped from LONG to WATCH now that it can no longer be scored on listing-date proximity."
+  "notes": "FMP MCP fallback. FMP data connector was UNAVAILABLE this run (persistent MCP disconnect + Cloudflare 502, 5 retries) -- momentum-fade cohort (BSP/SWMR/AVEX) price data carried forward unchanged from 2026-07-16, disclosed in the report. Lockup-window membership (date-math only, no outage impact) shows no new crossings today. Notable: CSQR dropped from LONG to WATCH (63.9->51.9) and STDN is now right at the LONG threshold (55.0) -- both mechanical, having lost the listing-date-proximity boost 1-2 days after listing."
 }
