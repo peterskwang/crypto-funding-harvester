@@ -1,115 +1,121 @@
 {
-  "last_weekly_run": "2026-07-13",
-  "last_daily_run": "2026-07-17",
+  "last_weekly_run": "2026-07-20",
   "upcoming_universe": [
     {
-      "ticker": "STDN",
-      "name": "Standard Nuclear, Inc.",
-      "listing_date": "2026-07-16",
-      "exchange": "NYSE",
-      "ipo_status": null,
-      "price_low": 18.0,
-      "price_high": 21.0,
-      "final_price": null,
-      "total_offer_size": 440737500.0,
-      "sector_tag": "ENERGY",
-      "score": 66.4,
-      "direction": "LONG",
-      "rationale": [
-        "Deal size tier: mid (offer size $440,737,500)",
-        "No historical analog group match \u2014 neutral weighting applied",
-        "Listing date 2026-07-16 (NYSE)"
-      ]
-    },
-    {
-      "ticker": "CSQR",
-      "name": "Csquare, Inc.",
-      "listing_date": "2026-07-16",
-      "exchange": "NYSE",
-      "ipo_status": null,
-      "price_low": 23.0,
-      "price_high": 27.0,
-      "final_price": null,
-      "total_offer_size": 1552500000.0,
-      "sector_tag": "OTHER",
-      "score": 63.3,
-      "direction": "LONG",
-      "rationale": [
-        "Deal size tier: large (offer size $1,552,500,000)",
-        "Analog group OTHER/large (n=6) averaged +0.3% in week 1",
-        "Listing date 2026-07-16 (NYSE)"
-      ]
-    },
-    {
-      "ticker": "TP",
-      "name": "Ticketplus Ltd.",
-      "listing_date": "2026-07-15",
+      "ticker": "GORO",
+      "name": "Gold Resource Corporation",
+      "listing_date": "2026-07-20",
       "exchange": "NYSE",
       "ipo_status": null,
       "price_low": null,
       "price_high": null,
       "final_price": null,
       "total_offer_size": null,
-      "sector_tag": "OTHER",
-      "score": 59.4,
-      "direction": "LONG",
-      "rationale": [
-        "Deal size tier: unknown (offer size $0)",
-        "No historical analog group match \u2014 neutral weighting applied",
-        "Listing date 2026-07-15 (NYSE)"
-      ]
+      "sector_tag": "OTHER"
     }
   ],
   "analog_groups": {
-    "OTHER|mid": {
+    "OTHER|unknown": {
       "sector": "OTHER",
-      "tier": "mid",
-      "count": 2,
-      "avg_week1_return": 0.0002999999999999999,
-      "avg_month1_return": 0.0451,
+      "tier": "unknown",
+      "count": 5,
+      "avg_week1_return": -0.21166913954158775,
+      "avg_month1_return": -0.2563090115633142,
       "tickers": [
-        "JAN",
-        "DPC"
+        "SHOT",
+        "RECI",
+        "BKYI",
+        "USDE",
+        "MFPVV"
+      ]
+    },
+    "ENERGY|small": {
+      "sector": "ENERGY",
+      "tier": "small",
+      "count": 1,
+      "avg_week1_return": 0.0,
+      "avg_month1_return": 0.0,
+      "tickers": [
+        "STDN"
+      ]
+    },
+    "OTHER|small": {
+      "sector": "OTHER",
+      "tier": "small",
+      "count": 3,
+      "avg_week1_return": -0.005146037183885972,
+      "avg_month1_return": 0.004626543669096888,
+      "tickers": [
+        "RACD",
+        "LIME",
+        "WLCOU"
       ]
     },
     "OTHER|large": {
       "sector": "OTHER",
       "tier": "large",
-      "count": 6,
-      "avg_week1_return": 0.0026333333333333287,
-      "avg_month1_return": 0.06080000000000001,
-      "tickers": [
-        "ARXS",
-        "PS",
-        "CBRS",
-        "INIO",
-        "QNT",
-        "BSP"
-      ]
-    },
-    "BIOTECH|mid": {
-      "sector": "BIOTECH",
-      "tier": "mid",
       "count": 2,
-      "avg_week1_return": -0.15605000000000002,
-      "avg_month1_return": -0.14035,
+      "avg_week1_return": -0.04160466638890539,
+      "avg_month1_return": -0.04160466638890539,
       "tickers": [
-        "KLRA",
-        "PBLS"
+        "SKHYV",
+        "SKHY"
       ]
     },
-    "ENERGY|large": {
+    "ENERGY|unknown": {
       "sector": "ENERGY",
-      "tier": "large",
+      "tier": "unknown",
       "count": 2,
-      "avg_week1_return": 0.04285,
-      "avg_month1_return": -0.01045,
+      "avg_week1_return": -0.4611649831649832,
+      "avg_month1_return": -0.5314074074074076,
       "tickers": [
-        "XE",
-        "FRVO"
+        "CEPL",
+        "EOSER"
+      ]
+    },
+    "TECH|unknown": {
+      "sector": "TECH",
+      "tier": "unknown",
+      "count": 2,
+      "avg_week1_return": -0.08692577568249103,
+      "avg_month1_return": -0.2587968111265995,
+      "tickers": [
+        "IQMX",
+        "IQMXW"
+      ]
+    },
+    "BIOTECH|unknown": {
+      "sector": "BIOTECH",
+      "tier": "unknown",
+      "count": 1,
+      "avg_week1_return": -0.22153846153846152,
+      "avg_month1_return": -0.2726153846153846,
+      "tickers": [
+        "VCRE"
+      ]
+    },
+    "OTHER|mid": {
+      "sector": "OTHER",
+      "tier": "mid",
+      "count": 3,
+      "avg_week1_return": -0.04935502465114018,
+      "avg_month1_return": -0.1035360326293533,
+      "tickers": [
+        "ITG",
+        "DPC",
+        "GHXIU"
+      ]
+    },
+    "OTHER|micro": {
+      "sector": "OTHER",
+      "tier": "micro",
+      "count": 2,
+      "avg_week1_return": -0.24618007544332052,
+      "avg_month1_return": -0.36881943939063144,
+      "tickers": [
+        "DSC",
+        "FISN"
       ]
     }
-  },
-  "note": "Daily light check; noise-filter bug fixed (removed single-letter ticker suffixes), CSQR now correctly included",
-  "notes": "FMP MCP fallback. FMP data connector was UNAVAILABLE this run (persistent MCP disconnect + Cloudflare 502, 5 retries) -- momentum-fade cohort (BSP/SWMR/AVEX) price data carried forward unchanged from 2026-07-16, disclosed in the report. Lockup-window membership (date-math only, no outage impact) shows no new crossings today. Notable: CSQR dropped from LONG to WATCH (63.9->51.9) and STDN is now right at the LONG threshold (55.0) -- both mechanical, having lost the listing-date-proximity boost 1-2 days after listing."
+  }
 }
