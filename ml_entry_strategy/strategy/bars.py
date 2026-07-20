@@ -49,11 +49,12 @@ def clean_volume_outliers(bars_5m: List[dict]) -> List[dict]:
     return out
 
 
-def load_5m() -> List[dict]:
-    with open(config.DATA_FILE) as fp:
+def load_5m(data_file: str = None, clean_volume: bool = True) -> List[dict]:
+    data_file = data_file or config.DATA_FILE
+    with open(data_file) as fp:
         bars = json.load(fp)
     bars = sorted(bars, key=lambda b: b["date"])
-    return clean_volume_outliers(bars)
+    return clean_volume_outliers(bars) if clean_volume else bars
 
 
 def aggregate_15m(bars_5m: List[dict]) -> List[dict]:
@@ -84,5 +85,5 @@ def aggregate_15m(bars_5m: List[dict]) -> List[dict]:
     return out
 
 
-def load_15m() -> List[dict]:
-    return aggregate_15m(load_5m())
+def load_15m(data_file: str = None, clean_volume: bool = True) -> List[dict]:
+    return aggregate_15m(load_5m(data_file, clean_volume))

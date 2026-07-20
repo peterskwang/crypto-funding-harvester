@@ -32,6 +32,32 @@ SIGNAL_TIMEFRAME_MINUTES = 15
 # out-of-sample (validate calibration, touched once).
 IN_SAMPLE_END_DATE = "2026-06-20"
 
+# -- MULTI-ASSET RUN --
+# The original ask asked about "an entry probability" in the abstract, not
+# BTC specifically -- run the same pipeline across an uncorrelated asset
+# class too, reusing 5-min data already fetched for fx_statarb_strategy/.
+# EURUSD/GBPUSD volume there is broker tick-count, not true traded volume
+# (FX spot has no centralized tape) -- same disclosed limitation as
+# eurusd_strategy/fx_statarb_strategy's volume-delta proxy. Split dates are
+# each asset's own ~65/35 in-sample/out-of-sample point.
+ASSETS = {
+    "BTCUSD": {
+        "data_file": "ml_entry_strategy/data/btcusd_5m.json",
+        "in_sample_end_date": "2026-06-20",
+        "clean_volume_outliers": True,
+    },
+    "EURUSD": {
+        "data_file": "fx_statarb_strategy/data/eurusd_5m.json",
+        "in_sample_end_date": "2026-05-15",
+        "clean_volume_outliers": False,
+    },
+    "GBPUSD": {
+        "data_file": "fx_statarb_strategy/data/gbpusd_5m.json",
+        "in_sample_end_date": "2026-05-15",
+        "clean_volume_outliers": False,
+    },
+}
+
 # -- TRIPLE-BARRIER LABELING --
 ATR_LOOKBACK = 14
 PROFIT_TARGET_ATR_MULT = 1.5   # profit barrier = entry +/- 1.5x ATR

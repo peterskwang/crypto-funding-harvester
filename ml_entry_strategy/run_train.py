@@ -1,5 +1,6 @@
 """Entrypoint: trains the entry-probability model for long and short
-candidates, validates calibration out-of-sample, and saves the report.
+candidates on every asset in config.ASSETS, validates calibration
+out-of-sample per asset, and saves a combined report.
 Usage: python -m ml_entry_strategy.run_train
 """
 
@@ -11,9 +12,9 @@ from ml_entry_strategy import config
 from ml_entry_strategy.strategy import bars, model, report
 
 
-def _run_direction(all_bars, direction):
+def _run_direction(all_bars, direction, in_sample_end_date):
     X, y, idxs = model.build_dataset(all_bars, direction)
-    is_mask, oos_mask = model.split_by_date(all_bars, idxs, config.IN_SAMPLE_END_DATE)
+    is_mask, oos_mask = model.split_by_date(all_bars, idxs, in_sample_end_date)
     X_is, y_is = X[is_mask], y[is_mask]
     X_oos, y_oos = X[oos_mask], y[oos_mask]
 
@@ -43,20 +44,34 @@ def _run_direction(all_bars, direction):
     }
 
 
-def main():
-    all_bars = bars.load_15m()
-    results = {direction: _run_direction(all_bars, direction) for direction in ("long", "short")}
+def _run_asset(symbol, asset_config):
+    all_bars = bars.load_15m(asset_config["data_file"], clean_volume=asset_config["clean_volume_outliers"])
+    return {
+        "symbol": symbol,
+        "n_bars": len(all_bars),
+        "date_range": (all_bars[0]["date"], all_bars[-1]["date"]),
+        "in_sample_end_date": asset_config["in_sample_end_date"],
+        "directions": {
+            direction: _run_direction(all_bars, direction, asset_config["in_sample_end_date"])
+            for direction in ("long", "short")
+        },
+    }
 
-    content = report.render_report(results)
+
+def main():
+    asset_results = {symbol: _run_asset(symbol, cfg) for symbol, cfg in config.ASSETS.items()}
+
+    content = report.render_report(asset_results)
     today = dt.date.today().isoformat()
     filename = f"{today}_ml_entry_calibration.md"
     path = report.save_report(content, filename)
 
     print(f"Saved report to {path}")
-    for direction in ("long", "short"):
-        r = results[direction]
-        print(f"{direction:6s} OOS AUC={r['oos_auc']:.3f}  Brier={r['oos_brier']:.4f} "
-              f"(naive={r['naive_brier']:.4f})  pred_range={r['pred_range'][0]*100:.1f}-{r['pred_range'][1]*100:.1f}%")
+    for symbol, asset_result in asset_results.items():
+        for direction in ("long", "short"):
+            r = asset_result["directions"][direction]
+            print(f"{symbol:7s} {direction:6s} OOS AUC={r['oos_auc']:.3f}  Brier={r['oos_brier']:.4f} "
+                  f"(naive={r['naive_brier']:.4f})  pred_range={r['pred_range'][0]*100:.1f}-{r['pred_range'][1]*100:.1f}%")
 
 
 if __name__ == "__main__":
