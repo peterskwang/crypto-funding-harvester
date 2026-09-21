@@ -1,5 +1,5 @@
 {
-  "last_weekly_run": "2026-09-14",
+  "last_weekly_run": "2026-09-21",
   "last_daily_run": "2026-09-18",
   "upcoming_universe": [
     {
@@ -11,54 +11,89 @@
       "price_low": null,
       "price_high": null,
       "final_price": null,
-      "total_offer_size": null,
-      "sector_tag": "OTHER"
+      "total_offer_size": null
     },
     {
-      "ticker": "OIG",
-      "name": "Orbital Infrastructure Group, Inc.",
-      "listing_date": "2026-09-18",
-      "exchange": "NASDAQ",
-      "ipo_status": null,
-      "price_low": 15.0,
-      "price_high": 17.0,
-      "final_price": null,
-      "total_offer_size": 340000000.0,
-      "sector_tag": "INDUSTRIALS"
-    },
-    {
-      "ticker": "HNUC",
-      "name": "Holtec Nuclear Corp",
-      "listing_date": "2026-09-18",
-      "exchange": "NASDAQ",
-      "ipo_status": null,
-      "price_low": 15.0,
-      "price_high": 18.0,
-      "final_price": null,
-      "total_offer_size": 900000000.0,
-      "sector_tag": "ENERGY"
-    },
-    {
-      "ticker": "DHGR",
-      "name": "Devonian Health Group Inc.",
-      "listing_date": "2026-09-16",
+      "ticker": "BMB",
+      "name": "Bamboo Insurance Services, Inc.",
+      "listing_date": "2026-09-23",
       "exchange": "NYSE",
+      "ipo_status": null,
+      "price_low": 18.0,
+      "price_high": 20.0,
+      "final_price": null,
+      "total_offer_size": 700000000.0
+    },
+    {
+      "ticker": "AMRO",
+      "name": "Amaero Inc.",
+      "listing_date": "2026-09-23",
+      "exchange": "NASDAQ",
       "ipo_status": null,
       "price_low": null,
       "price_high": null,
       "final_price": null,
-      "total_offer_size": null,
-      "sector_tag": "HEALTH"
+      "total_offer_size": null
     }
   ],
   "analog_groups": {
+    "HEALTHCARE|unknown": {
+      "sector": "HEALTHCARE",
+      "tier": "unknown",
+      "count": 13,
+      "avg_week1_return": 0.13828255560681083,
+      "avg_month1_return": 0.33557230548289574,
+      "tickers": [
+        "ETRA",
+        "VOGX",
+        "BSEM",
+        "LTGO",
+        "BLSM",
+        "BRVE",
+        "ATTO",
+        "OBX",
+        "APMD",
+        "SCTX",
+        "FRNM",
+        "CUVL",
+        "VCRE"
+      ]
+    },
+    "TECHNOLOGY|unknown": {
+      "sector": "TECHNOLOGY",
+      "tier": "unknown",
+      "count": 18,
+      "avg_week1_return": -0.05312606990506114,
+      "avg_month1_return": -0.15598047257598516,
+      "tickers": [
+        "TRT",
+        "PSQL",
+        "XLAB",
+        "PSQLW",
+        "NUR",
+        "TP",
+        "GYGY",
+        "IOND",
+        "QBTS",
+        "CSQR",
+        "QMLS",
+        "SKHY",
+        "SKHYV",
+        "BKYI",
+        "IQMXW",
+        "IQMX",
+        "BSP",
+        "DSC"
+      ]
+    },
     "FINANCIAL SERVICES|unknown": {
       "sector": "FINANCIAL SERVICES",
       "tier": "unknown",
-      "count": 21,
-      "avg_week1_return": -0.017000699944916972,
-      "avg_month1_return": -0.05222536283726751,
+      "count": 19,
+      "avg_week1_return": -0.02790153893597307,
+      "avg_month1_return": -0.07289233021634028,
       "tickers": [
+        "WCCB",
         "SWRD",
         "JONE",
         "ADBT",
@@ -72,22 +107,19 @@
         "CCCT",
         "PBAM",
         "LTGR",
-        "SHOT",
         "SHOTR",
+        "SHOT",
         "JONEU",
         "RACD",
-        "GHXIU",
-        "HAPN",
-        "FCBM",
-        "WLCOU"
+        "GHXIU"
       ]
     },
     "BASIC MATERIALS|unknown": {
       "sector": "BASIC MATERIALS",
       "tier": "unknown",
-      "count": 9,
-      "avg_week1_return": 0.07896091888468898,
-      "avg_month1_return": 0.14457785834791745,
+      "count": 8,
+      "avg_week1_return": 0.045247292391893006,
+      "avg_month1_return": 0.050960203329237085,
       "tickers": [
         "RML",
         "TREO",
@@ -96,8 +128,7 @@
         "BLTH",
         "GORO",
         "STDN",
-        "COPR",
-        "NVA"
+        "COPR"
       ]
     },
     "COMMUNICATION SERVICES|unknown": {
@@ -105,7 +136,7 @@
       "tier": "unknown",
       "count": 3,
       "avg_week1_return": -0.19348147050429207,
-      "avg_month1_return": -0.13921809479900765,
+      "avg_month1_return": -0.13671809479900768,
       "tickers": [
         "GIXI",
         "CHTRP",
@@ -116,8 +147,8 @@
       "sector": "REAL ESTATE",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": 0.1627906976744187,
-      "avg_month1_return": -0.20265780730897007,
+      "avg_week1_return": 0.17142857142857132,
+      "avg_month1_return": -0.3742857142857143,
       "tickers": [
         "OPAD"
       ]
@@ -125,9 +156,9 @@
     "INDUSTRIALS|unknown": {
       "sector": "INDUSTRIALS",
       "tier": "unknown",
-      "count": 15,
-      "avg_week1_return": -0.23082237432332064,
-      "avg_month1_return": -0.2557367251281599,
+      "count": 14,
+      "avg_week1_return": -0.2180856067165972,
+      "avg_month1_return": -0.24951999734444097,
       "tickers": [
         "TRBG",
         "FBDT",
@@ -138,38 +169,11 @@
         "CAE",
         "CEPL",
         "EOSER",
-        "LIME",
         "ITG",
-        "MIDDV",
+        "LIME",
         "MFPVV",
-        "DPC",
-        "FISN"
-      ]
-    },
-    "TECHNOLOGY|unknown": {
-      "sector": "TECHNOLOGY",
-      "tier": "unknown",
-      "count": 17,
-      "avg_week1_return": -0.018083809687095994,
-      "avg_month1_return": -0.12987761621165947,
-      "tickers": [
-        "XLAB",
-        "PSQLW",
-        "PSQL",
-        "NUR",
-        "TP",
-        "GYGY",
-        "IOND",
-        "QBTS",
-        "CSQR",
-        "QMLS",
-        "SKHYV",
-        "SKHY",
-        "BKYI",
-        "IQMX",
-        "IQMXW",
-        "BSP",
-        "DSC"
+        "MIDDV",
+        "DPC"
       ]
     },
     "CONSUMER DEFENSIVE|unknown": {
@@ -187,34 +191,12 @@
       "sector": "CONSUMER CYCLICAL",
       "tier": "unknown",
       "count": 3,
-      "avg_week1_return": 0.12526419474245562,
-      "avg_month1_return": 0.05402158228245186,
+      "avg_week1_return": 0.05445336306205866,
+      "avg_month1_return": -0.0026198439241917905,
       "tickers": [
         "NXH",
-        "JMKE",
-        "REF"
-      ]
-    },
-    "HEALTHCARE|unknown": {
-      "sector": "HEALTHCARE",
-      "tier": "unknown",
-      "count": 13,
-      "avg_week1_return": 0.13901479336864306,
-      "avg_month1_return": 0.34842798205979997,
-      "tickers": [
-        "VOGX",
-        "LTGO",
-        "BSEM",
-        "BLSM",
-        "BRVE",
-        "ATTO",
-        "OBX",
-        "APMD",
-        "SCTX",
-        "FRNM",
-        "CUVL",
-        "VCRE",
-        "KARD"
+        "REF",
+        "JMKE"
       ]
     },
     "BASIC MATERIALS|small": {
@@ -231,8 +213,8 @@
       "sector": "OTHER",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": -0.0007801872449387882,
-      "avg_month1_return": -0.0003700888213170976,
+      "avg_week1_return": 0.00027035416395477325,
+      "avg_month1_return": 0.0008210756090478957,
       "tickers": [
         "USDE"
       ]
