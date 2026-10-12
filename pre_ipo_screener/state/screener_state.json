@@ -1,38 +1,57 @@
 {
-  "last_weekly_run": "2026-10-05",
+  "last_weekly_run": "2026-10-12",
   "last_daily_run": "2026-10-09",
-  "upcoming_universe": [],
+  "upcoming_universe": [
+    {
+      "ticker": "IAM",
+      "name": "Iambic Therapeutics, Inc.",
+      "listing_date": "2026-10-15",
+      "exchange": "NASDAQ",
+      "ipo_status": null,
+      "price_low": 15.0,
+      "price_high": 17.0,
+      "final_price": null,
+      "total_offer_size": 159375000.0,
+      "sector_tag": "BIOTECH"
+    }
+  ],
   "analog_groups": {
-    "BASIC MATERIALS|unknown": {
-      "sector": "BASIC MATERIALS",
+    "INDUSTRIALS|unknown": {
+      "sector": "INDUSTRIALS",
       "tier": "unknown",
-      "count": 8,
-      "avg_week1_return": 0.026887815215764322,
-      "avg_month1_return": 0.04487373013837185,
+      "count": 10,
+      "avg_week1_return": -0.2771155509791824,
+      "avg_month1_return": -0.31903104411025757,
       "tickers": [
-        "CHWM",
-        "RML",
-        "TREO",
-        "CNL",
-        "IMC",
-        "BLTH",
-        "GORO",
-        "STDN"
+        "AIOK",
+        "ACCV",
+        "RZAI",
+        "TRBG",
+        "FBDT",
+        "LYNX",
+        "FOIL",
+        "SNSC",
+        "EOSEW",
+        "CAE"
       ]
     },
     "HEALTHCARE|unknown": {
       "sector": "HEALTHCARE",
       "tier": "unknown",
-      "count": 13,
-      "avg_week1_return": 0.15809313349238158,
-      "avg_month1_return": 0.34757624711517676,
+      "count": 17,
+      "avg_week1_return": 0.18330262292296925,
+      "avg_month1_return": 0.3278088544712935,
       "tickers": [
+        "RTSN",
+        "TRXB",
+        "WORX",
         "MMEDV",
+        "ADRX",
         "ETRA",
         "VOGX",
         "BLSM",
-        "BSEM",
         "LTGO",
+        "BSEM",
         "BRVE",
         "ATTO",
         "OBX",
@@ -42,43 +61,14 @@
         "CUVL"
       ]
     },
-    "INDUSTRIALS|unknown": {
-      "sector": "INDUSTRIALS",
-      "tier": "unknown",
-      "count": 11,
-      "avg_week1_return": -0.21912210205637359,
-      "avg_month1_return": -0.2544164175490289,
-      "tickers": [
-        "ACCV",
-        "RZAI",
-        "ADRX",
-        "TRBG",
-        "FBDT",
-        "LYNX",
-        "SNSC",
-        "FOIL",
-        "EOSEW",
-        "CAE",
-        "CEPL"
-      ]
-    },
-    "ENERGY|unknown": {
-      "sector": "ENERGY",
-      "tier": "unknown",
-      "count": 1,
-      "avg_week1_return": 0.0009532888465204754,
-      "avg_month1_return": 0.0028598665395614263,
-      "tickers": [
-        "GOW"
-      ]
-    },
     "FINANCIAL SERVICES|unknown": {
       "sector": "FINANCIAL SERVICES",
       "tier": "unknown",
       "count": 20,
-      "avg_week1_return": -0.028902349524081213,
-      "avg_month1_return": -0.06863842549416785,
+      "avg_week1_return": -0.0548148041568702,
+      "avg_month1_return": -0.09860564512779496,
       "tickers": [
+        "BBCI",
         "FJDI",
         "OIG",
         "WCCB",
@@ -95,10 +85,48 @@
         "CCCT",
         "PBAM",
         "LTGR",
-        "SHOTR",
         "SHOT",
-        "JONEU",
-        "RACD"
+        "SHOTR",
+        "JONEU"
+      ]
+    },
+    "COMMUNICATION SERVICES|unknown": {
+      "sector": "COMMUNICATION SERVICES",
+      "tier": "unknown",
+      "count": 3,
+      "avg_week1_return": -0.03627846151640617,
+      "avg_month1_return": -0.045415176992572866,
+      "tickers": [
+        "LUMN",
+        "CHTRP",
+        "QVCG"
+      ]
+    },
+    "BASIC MATERIALS|unknown": {
+      "sector": "BASIC MATERIALS",
+      "tier": "unknown",
+      "count": 8,
+      "avg_week1_return": -0.031008130826117225,
+      "avg_month1_return": 0.009071003520256759,
+      "tickers": [
+        "CHWM",
+        "RML",
+        "TREO",
+        "CNL",
+        "IMC",
+        "BLTH",
+        "GORO",
+        "STDN"
+      ]
+    },
+    "ENERGY|unknown": {
+      "sector": "ENERGY",
+      "tier": "unknown",
+      "count": 1,
+      "avg_week1_return": -0.0009523809523809321,
+      "avg_month1_return": 0.0038095238095237284,
+      "tickers": [
+        "GOW"
       ]
     },
     "UTILITIES|unknown": {
@@ -114,58 +142,32 @@
     "TECHNOLOGY|unknown": {
       "sector": "TECHNOLOGY",
       "tier": "unknown",
-      "count": 14,
-      "avg_week1_return": -0.054635379849146966,
-      "avg_month1_return": -0.121688533423015,
+      "count": 12,
+      "avg_week1_return": -0.11041489632196931,
+      "avg_month1_return": -0.2254589322386639,
       "tickers": [
         "TRT",
+        "GIXI",
+        "PSQLW",
         "XLAB",
         "PSQL",
-        "PSQLW",
         "NUR",
         "TP",
         "GYGY",
         "IOND",
         "QBTS",
         "QMLS",
-        "CSQR",
-        "SKHY",
-        "SKHYV",
-        "BKYI"
-      ]
-    },
-    "COMMUNICATION SERVICES|unknown": {
-      "sector": "COMMUNICATION SERVICES",
-      "tier": "unknown",
-      "count": 3,
-      "avg_week1_return": -0.19348147050429207,
-      "avg_month1_return": -0.17088476146567433,
-      "tickers": [
-        "GIXI",
-        "CHTRP",
-        "QVCG"
+        "CSQR"
       ]
     },
     "REAL ESTATE|unknown": {
       "sector": "REAL ESTATE",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": -0.1111111111111112,
-      "avg_month1_return": -0.0574074074074075,
+      "avg_week1_return": -0.008333333333333342,
+      "avg_month1_return": 0.08125000000000013,
       "tickers": [
         "OPAD"
-      ]
-    },
-    "CONSUMER CYCLICAL|unknown": {
-      "sector": "CONSUMER CYCLICAL",
-      "tier": "unknown",
-      "count": 3,
-      "avg_week1_return": 0.06485299199548637,
-      "avg_month1_return": -0.02040622024754047,
-      "tickers": [
-        "NXH",
-        "JMKE",
-        "REF"
       ]
     },
     "CONSUMER DEFENSIVE|unknown": {
@@ -177,6 +179,18 @@
       "tickers": [
         "WATR",
         "BIOT"
+      ]
+    },
+    "CONSUMER CYCLICAL|unknown": {
+      "sector": "CONSUMER CYCLICAL",
+      "tier": "unknown",
+      "count": 3,
+      "avg_week1_return": 0.05500894907737391,
+      "avg_month1_return": -0.07128771679733903,
+      "tickers": [
+        "NXH",
+        "REF",
+        "JMKE"
       ]
     }
   }
