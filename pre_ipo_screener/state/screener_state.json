@@ -1,12 +1,12 @@
 {
-  "last_weekly_run": "2026-10-19",
-  "last_daily_run": "2026-10-23",
+  "last_weekly_run": "2026-10-26",
+  "last_daily_run": "2026-10-26",
   "upcoming_universe": [
     {
-      "ticker": "LCU",
-      "name": "Lion Copper Corp. Common Shares",
-      "listing_date": "2026-10-19",
-      "exchange": "NASDAQ",
+      "ticker": "GUNN",
+      "name": "Gunnison Copper Corp.",
+      "listing_date": "2026-10-26",
+      "exchange": "NYSE",
       "ipo_status": null,
       "price_low": null,
       "price_high": null,
@@ -16,77 +16,82 @@
     }
   ],
   "analog_groups": {
+    "BASIC MATERIALS|unknown": {
+      "sector": "BASIC MATERIALS",
+      "tier": "unknown",
+      "count": 9,
+      "avg_week1_return": 0.024641615281142944,
+      "avg_month1_return": 0.17523338847409986,
+      "tickers": [
+        "APXC",
+        "LCU",
+        "AMRO",
+        "BMMX",
+        "CHWM",
+        "RML",
+        "TREO",
+        "CNL",
+        "IMC"
+      ]
+    },
     "HEALTHCARE|unknown": {
       "sector": "HEALTHCARE",
       "tier": "unknown",
-      "count": 17,
-      "avg_week1_return": 0.07965493061284037,
-      "avg_month1_return": 0.2756011461638017,
+      "count": 19,
+      "avg_week1_return": 0.03886867585354828,
+      "avg_month1_return": 0.15729704013890766,
       "tickers": [
+        "LYCA",
+        "DAVI",
+        "IDXG",
         "CTY",
-        "TRXB",
+        "IAM",
         "RTSN",
+        "TRXB",
         "WORX",
         "MMEDV",
         "ADRX",
         "ETRA",
         "VOGX",
-        "LTGO",
         "BSEM",
+        "LTGO",
         "BLSM",
         "BRVE",
         "ATTO",
         "OBX",
-        "APMD",
-        "SCTX",
-        "FRNM"
+        "APMD"
       ]
     },
-    "BASIC MATERIALS|unknown": {
-      "sector": "BASIC MATERIALS",
+    "INDUSTRIALS|unknown": {
+      "sector": "INDUSTRIALS",
       "tier": "unknown",
-      "count": 8,
-      "avg_week1_return": -0.02072509421062496,
-      "avg_month1_return": 0.12299116202332784,
+      "count": 10,
+      "avg_week1_return": -0.30948948433276974,
+      "avg_month1_return": -0.27358849358011716,
       "tickers": [
-        "BMMX",
-        "AMRO",
-        "CHWM",
-        "RML",
-        "TREO",
-        "CNL",
-        "IMC",
-        "BLTH"
-      ]
-    },
-    "TECHNOLOGY|unknown": {
-      "sector": "TECHNOLOGY",
-      "tier": "unknown",
-      "count": 11,
-      "avg_week1_return": -0.10485908461481455,
-      "avg_month1_return": -0.19514750466922515,
-      "tickers": [
-        "IAM",
-        "TRT",
-        "GIXI",
-        "PSQLW",
-        "XLAB",
-        "PSQL",
-        "NUR",
-        "TP",
-        "GYGY",
-        "IOND",
-        "QBTS"
+        "NANO",
+        "AIOK",
+        "ACCV",
+        "RZAI",
+        "TRBG",
+        "FBDT",
+        "LYNX",
+        "SNSC",
+        "FOIL",
+        "EOSEW"
       ]
     },
     "FINANCIAL SERVICES|unknown": {
       "sector": "FINANCIAL SERVICES",
       "tier": "unknown",
-      "count": 18,
-      "avg_week1_return": -0.09240887172374197,
-      "avg_month1_return": -0.09806386216012408,
+      "count": 20,
+      "avg_week1_return": -0.06969878614537521,
+      "avg_month1_return": -0.05677090768675497,
       "tickers": [
+        "SATS",
         "DFGV",
+        "XRPNW",
+        "XRPN",
         "BBCI",
         "FJDI",
         "OIG",
@@ -102,16 +107,15 @@
         "RCBC",
         "FJDIU",
         "CCCT",
-        "PBAM",
-        "LTGR"
+        "PBAM"
       ]
     },
     "COMMUNICATION SERVICES|unknown": {
       "sector": "COMMUNICATION SERVICES",
       "tier": "unknown",
       "count": 4,
-      "avg_week1_return": -0.04253943031618109,
-      "avg_month1_return": -0.05491324831940786,
+      "avg_week1_return": -0.1044160856685725,
+      "avg_month1_return": -0.07887422537631929,
       "tickers": [
         "NXDR",
         "LUMN",
@@ -119,31 +123,12 @@
         "QVCG"
       ]
     },
-    "INDUSTRIALS|unknown": {
-      "sector": "INDUSTRIALS",
-      "tier": "unknown",
-      "count": 10,
-      "avg_week1_return": -0.30840645184179505,
-      "avg_month1_return": -0.3621678128819824,
-      "tickers": [
-        "AIOK",
-        "ACCV",
-        "RZAI",
-        "TRBG",
-        "FBDT",
-        "LYNX",
-        "SNSC",
-        "FOIL",
-        "EOSEW",
-        "CAE"
-      ]
-    },
     "ENERGY|unknown": {
       "sector": "ENERGY",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": 0.0,
-      "avg_month1_return": 0.00476190476190483,
+      "avg_week1_return": 0.0019047619047618642,
+      "avg_month1_return": 0.0038095238095237284,
       "tickers": [
         "GOW"
       ]
@@ -158,12 +143,30 @@
         "NWCL"
       ]
     },
+    "TECHNOLOGY|unknown": {
+      "sector": "TECHNOLOGY",
+      "tier": "unknown",
+      "count": 9,
+      "avg_week1_return": -0.16814049538970402,
+      "avg_month1_return": -0.24207278814164515,
+      "tickers": [
+        "TRT",
+        "GIXI",
+        "PSQL",
+        "XLAB",
+        "PSQLW",
+        "NUR",
+        "TP",
+        "GYGY",
+        "IOND"
+      ]
+    },
     "REAL ESTATE|unknown": {
       "sector": "REAL ESTATE",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": 0.00873362445414848,
-      "avg_month1_return": 0.06768558951965056,
+      "avg_week1_return": 0.20346320346320335,
+      "avg_month1_return": -0.15151515151515155,
       "tickers": [
         "OPAD"
       ]
@@ -171,24 +174,23 @@
     "CONSUMER DEFENSIVE|unknown": {
       "sector": "CONSUMER DEFENSIVE",
       "tier": "unknown",
-      "count": 2,
-      "avg_week1_return": -0.4247115384615385,
-      "avg_month1_return": -0.8434615384615385,
+      "count": 1,
+      "avg_week1_return": 0.010576923076923022,
+      "avg_month1_return": -0.7269230769230769,
       "tickers": [
-        "WATR",
-        "BIOT"
+        "WATR"
       ]
     },
     "CONSUMER CYCLICAL|unknown": {
       "sector": "CONSUMER CYCLICAL",
       "tier": "unknown",
       "count": 3,
-      "avg_week1_return": 0.05291861999702894,
-      "avg_month1_return": -0.027856829361462603,
+      "avg_week1_return": 0.018223253307815556,
+      "avg_month1_return": -0.04333132441401937,
       "tickers": [
         "NXH",
-        "REF",
-        "JMKE"
+        "JMKE",
+        "REF"
       ]
     }
   }
