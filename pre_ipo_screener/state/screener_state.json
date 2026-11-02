@@ -1,12 +1,12 @@
 {
-  "last_weekly_run": "2026-10-26",
+  "last_weekly_run": "2026-11-02",
   "last_daily_run": "2026-10-30",
   "upcoming_universe": [
     {
-      "ticker": "GUNN",
-      "name": "Gunnison Copper Corp.",
-      "listing_date": "2026-10-26",
-      "exchange": "NYSE",
+      "ticker": "NARA",
+      "name": "Narragansett Bancorp, Inc. Common Stock",
+      "listing_date": "2026-11-02",
+      "exchange": "NASDAQ",
       "ipo_status": null,
       "price_low": null,
       "price_high": null,
@@ -16,59 +16,43 @@
     }
   ],
   "analog_groups": {
-    "BASIC MATERIALS|unknown": {
-      "sector": "BASIC MATERIALS",
-      "tier": "unknown",
-      "count": 9,
-      "avg_week1_return": 0.024641615281142944,
-      "avg_month1_return": 0.17523338847409986,
-      "tickers": [
-        "APXC",
-        "LCU",
-        "AMRO",
-        "BMMX",
-        "CHWM",
-        "RML",
-        "TREO",
-        "CNL",
-        "IMC"
-      ]
-    },
     "HEALTHCARE|unknown": {
       "sector": "HEALTHCARE",
       "tier": "unknown",
-      "count": 19,
-      "avg_week1_return": 0.03886867585354828,
-      "avg_month1_return": 0.15729704013890766,
+      "count": 20,
+      "avg_week1_return": 0.04565884651011648,
+      "avg_month1_return": 0.032243127628028424,
       "tickers": [
+        "ASPE",
+        "BBTX",
         "LYCA",
         "DAVI",
         "IDXG",
         "CTY",
         "IAM",
-        "RTSN",
         "TRXB",
+        "RTSN",
         "WORX",
         "MMEDV",
         "ADRX",
         "ETRA",
         "VOGX",
+        "BLSM",
         "BSEM",
         "LTGO",
-        "BLSM",
         "BRVE",
         "ATTO",
-        "OBX",
-        "APMD"
+        "OBX"
       ]
     },
     "INDUSTRIALS|unknown": {
       "sector": "INDUSTRIALS",
       "tier": "unknown",
-      "count": 10,
-      "avg_week1_return": -0.30948948433276974,
-      "avg_month1_return": -0.27358849358011716,
+      "count": 11,
+      "avg_week1_return": -0.29802074333282097,
+      "avg_month1_return": -0.13939415424817497,
       "tickers": [
+        "NORD",
         "NANO",
         "AIOK",
         "ACCV",
@@ -76,22 +60,22 @@
         "TRBG",
         "FBDT",
         "LYNX",
-        "SNSC",
         "FOIL",
+        "SNSC",
         "EOSEW"
       ]
     },
     "FINANCIAL SERVICES|unknown": {
       "sector": "FINANCIAL SERVICES",
       "tier": "unknown",
-      "count": 20,
-      "avg_week1_return": -0.06969878614537521,
-      "avg_month1_return": -0.05677090768675497,
+      "count": 18,
+      "avg_week1_return": -0.06051369539221972,
+      "avg_month1_return": -0.05890753495980374,
       "tickers": [
+        "GBC",
         "SATS",
-        "DFGV",
-        "XRPNW",
         "XRPN",
+        "XRPNW",
         "BBCI",
         "FJDI",
         "OIG",
@@ -105,17 +89,33 @@
         "PLCIR",
         "WLCO",
         "RCBC",
-        "FJDIU",
-        "CCCT",
-        "PBAM"
+        "FJDIU"
+      ]
+    },
+    "BASIC MATERIALS|unknown": {
+      "sector": "BASIC MATERIALS",
+      "tier": "unknown",
+      "count": 9,
+      "avg_week1_return": -0.05759040010250948,
+      "avg_month1_return": -0.0024159737212464355,
+      "tickers": [
+        "GUNN",
+        "APXC",
+        "LCU",
+        "BMMX",
+        "AMRO",
+        "CHWM",
+        "RML",
+        "TREO",
+        "CNL"
       ]
     },
     "COMMUNICATION SERVICES|unknown": {
       "sector": "COMMUNICATION SERVICES",
       "tier": "unknown",
       "count": 4,
-      "avg_week1_return": -0.1044160856685725,
-      "avg_month1_return": -0.07887422537631929,
+      "avg_week1_return": -0.043656691294379324,
+      "avg_month1_return": -0.019279676474224846,
       "tickers": [
         "NXDR",
         "LUMN",
@@ -127,8 +127,8 @@
       "sector": "ENERGY",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": 0.0019047619047618642,
-      "avg_month1_return": 0.0038095238095237284,
+      "avg_week1_return": -0.000950570342205303,
+      "avg_month1_return": 0.000950570342205303,
       "tickers": [
         "GOW"
       ]
@@ -146,29 +146,37 @@
     "TECHNOLOGY|unknown": {
       "sector": "TECHNOLOGY",
       "tier": "unknown",
-      "count": 9,
-      "avg_week1_return": -0.16814049538970402,
-      "avg_month1_return": -0.24207278814164515,
+      "count": 7,
+      "avg_week1_return": -0.07812957748623735,
+      "avg_month1_return": -0.14388391407996803,
       "tickers": [
         "TRT",
         "GIXI",
+        "PSQLW",
         "PSQL",
         "XLAB",
-        "PSQLW",
         "NUR",
-        "TP",
-        "GYGY",
-        "IOND"
+        "TP"
       ]
     },
     "REAL ESTATE|unknown": {
       "sector": "REAL ESTATE",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": 0.20346320346320335,
-      "avg_month1_return": -0.15151515151515155,
+      "avg_week1_return": -0.1763668430335097,
+      "avg_month1_return": -0.12345679012345682,
       "tickers": [
         "OPAD"
+      ]
+    },
+    "CONSUMER CYCLICAL|unknown": {
+      "sector": "CONSUMER CYCLICAL",
+      "tier": "unknown",
+      "count": 1,
+      "avg_week1_return": -0.09712230215827339,
+      "avg_month1_return": 0.0,
+      "tickers": [
+        "NXH"
       ]
     },
     "CONSUMER DEFENSIVE|unknown": {
@@ -180,18 +188,10 @@
       "tickers": [
         "WATR"
       ]
-    },
-    "CONSUMER CYCLICAL|unknown": {
-      "sector": "CONSUMER CYCLICAL",
-      "tier": "unknown",
-      "count": 3,
-      "avg_week1_return": 0.018223253307815556,
-      "avg_month1_return": -0.04333132441401937,
-      "tickers": [
-        "NXH",
-        "JMKE",
-        "REF"
-      ]
     }
-  }
+  },
+  "equity": 0.0,
+  "realized_pnl": 0.0,
+  "open_positions": {},
+  "funding_history": []
 }
