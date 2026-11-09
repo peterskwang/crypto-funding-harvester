@@ -1,17 +1,17 @@
 {
-  "last_weekly_run": "2026-11-02",
+  "last_weekly_run": "2026-11-09",
   "last_daily_run": "2026-11-06",
   "upcoming_universe": [
     {
-      "ticker": "NARA",
-      "name": "Narragansett Bancorp, Inc. Common Stock",
-      "listing_date": "2026-11-02",
+      "ticker": "RZRA",
+      "name": "Rezera Inc.",
+      "listing_date": "2026-11-12",
       "exchange": "NASDAQ",
       "ipo_status": null,
-      "price_low": null,
-      "price_high": null,
+      "price_low": 11.0,
+      "price_high": 13.0,
       "final_price": null,
-      "total_offer_size": null,
+      "total_offer_size": 216666671.0,
       "sector_tag": "OTHER"
     }
   ],
@@ -19,15 +19,16 @@
     "HEALTHCARE|unknown": {
       "sector": "HEALTHCARE",
       "tier": "unknown",
-      "count": 20,
-      "avg_week1_return": 0.04565884651011648,
-      "avg_month1_return": 0.032243127628028424,
+      "count": 15,
+      "avg_week1_return": -0.01643544728778248,
+      "avg_month1_return": -0.07292867349898392,
       "tickers": [
+        "IDXG",
         "ASPE",
+        "NORD",
         "BBTX",
         "LYCA",
         "DAVI",
-        "IDXG",
         "CTY",
         "IAM",
         "TRXB",
@@ -36,42 +37,28 @@
         "MMEDV",
         "ADRX",
         "ETRA",
-        "VOGX",
-        "BLSM",
-        "BSEM",
-        "LTGO",
-        "BRVE",
-        "ATTO",
-        "OBX"
+        "VOGX"
       ]
     },
-    "INDUSTRIALS|unknown": {
-      "sector": "INDUSTRIALS",
+    "CONSUMER CYCLICAL|unknown": {
+      "sector": "CONSUMER CYCLICAL",
       "tier": "unknown",
-      "count": 11,
-      "avg_week1_return": -0.29802074333282097,
-      "avg_month1_return": -0.13939415424817497,
+      "count": 2,
+      "avg_week1_return": 0.0005235995079999926,
+      "avg_month1_return": -0.08678058737294575,
       "tickers": [
-        "NORD",
-        "NANO",
-        "AIOK",
-        "ACCV",
-        "RZAI",
-        "TRBG",
-        "FBDT",
-        "LYNX",
-        "FOIL",
-        "SNSC",
-        "EOSEW"
+        "HLT",
+        "NXH"
       ]
     },
     "FINANCIAL SERVICES|unknown": {
       "sector": "FINANCIAL SERVICES",
       "tier": "unknown",
-      "count": 18,
-      "avg_week1_return": -0.06051369539221972,
-      "avg_month1_return": -0.05890753495980374,
+      "count": 16,
+      "avg_week1_return": -0.09716635261429725,
+      "avg_month1_return": -0.11312300218981147,
       "tickers": [
+        "NARA",
         "GBC",
         "SATS",
         "XRPN",
@@ -86,49 +73,63 @@
         "QNBC",
         "CGCF",
         "GHXI",
-        "PLCIR",
-        "WLCO",
-        "RCBC",
-        "FJDIU"
+        "PLCIR"
       ]
     },
     "BASIC MATERIALS|unknown": {
       "sector": "BASIC MATERIALS",
       "tier": "unknown",
       "count": 9,
-      "avg_week1_return": -0.05759040010250948,
-      "avg_month1_return": -0.0024159737212464355,
+      "avg_week1_return": -0.0036882428060970598,
+      "avg_month1_return": 0.005761422617158337,
       "tickers": [
         "GUNN",
         "APXC",
         "LCU",
-        "BMMX",
         "AMRO",
+        "BMMX",
         "CHWM",
         "RML",
         "TREO",
         "CNL"
       ]
     },
+    "INDUSTRIALS|unknown": {
+      "sector": "INDUSTRIALS",
+      "tier": "unknown",
+      "count": 9,
+      "avg_week1_return": -0.36195630085938635,
+      "avg_month1_return": -0.33170253763912605,
+      "tickers": [
+        "NANO",
+        "AIOK",
+        "ACCV",
+        "RZAI",
+        "TRBG",
+        "FBDT",
+        "LYNX",
+        "FOIL",
+        "SNSC"
+      ]
+    },
     "COMMUNICATION SERVICES|unknown": {
       "sector": "COMMUNICATION SERVICES",
       "tier": "unknown",
-      "count": 4,
-      "avg_week1_return": -0.043656691294379324,
-      "avg_month1_return": -0.019279676474224846,
+      "count": 3,
+      "avg_week1_return": 0.00507571722868226,
+      "avg_month1_return": 0.0415916606277108,
       "tickers": [
         "NXDR",
         "LUMN",
-        "CHTRP",
-        "QVCG"
+        "CHTRP"
       ]
     },
     "ENERGY|unknown": {
       "sector": "ENERGY",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": -0.000950570342205303,
-      "avg_month1_return": 0.000950570342205303,
+      "avg_week1_return": 0.002854424357754459,
+      "avg_month1_return": 0.005708848715509087,
       "tickers": [
         "GOW"
       ]
@@ -146,37 +147,26 @@
     "TECHNOLOGY|unknown": {
       "sector": "TECHNOLOGY",
       "tier": "unknown",
-      "count": 7,
-      "avg_week1_return": -0.07812957748623735,
-      "avg_month1_return": -0.14388391407996803,
+      "count": 6,
+      "avg_week1_return": -0.0992736036647448,
+      "avg_month1_return": -0.21425057010438175,
       "tickers": [
         "TRT",
         "GIXI",
-        "PSQLW",
         "PSQL",
+        "PSQLW",
         "XLAB",
-        "NUR",
-        "TP"
+        "NUR"
       ]
     },
     "REAL ESTATE|unknown": {
       "sector": "REAL ESTATE",
       "tier": "unknown",
       "count": 1,
-      "avg_week1_return": -0.1763668430335097,
-      "avg_month1_return": -0.12345679012345682,
+      "avg_week1_return": 0.10278372591006434,
+      "avg_month1_return": 0.01713062098501072,
       "tickers": [
         "OPAD"
-      ]
-    },
-    "CONSUMER CYCLICAL|unknown": {
-      "sector": "CONSUMER CYCLICAL",
-      "tier": "unknown",
-      "count": 1,
-      "avg_week1_return": -0.09712230215827339,
-      "avg_month1_return": 0.0,
-      "tickers": [
-        "NXH"
       ]
     },
     "CONSUMER DEFENSIVE|unknown": {
