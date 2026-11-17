@@ -171,5 +171,10 @@
         "OPAD"
       ]
     }
-  }
+  },
+  "equity": 0.0,
+  "realized_pnl": 0.0,
+  "open_positions": {},
+  "funding_history": [],
+  "last_daily_run": "2026-11-17"
 }
