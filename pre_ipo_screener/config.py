@@ -78,6 +78,7 @@ MODERATE_VOLATILITY_CUTOFF = 0.03
 TOP_N_PER_BUCKET = 5
 REPORTS_DIR = "pre_ipo_screener/reports"
 STATE_FILE_PATH = "pre_ipo_screener/state/screener_state.json"
+TRACKER_FILE_PATH = "pre_ipo_screener/state/performance_tracker.json"
 
 # -- BACKTEST EXIT TIMING (trading days from entry) --
 # Mirrors the suggested_style buckets in scoring.py so a backtested trade's

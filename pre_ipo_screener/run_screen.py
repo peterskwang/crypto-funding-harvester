@@ -13,9 +13,25 @@ from pre_ipo_screener import config
 from pre_ipo_screener.data.client_factory import NoDataSourceConfigured, get_client
 from pre_ipo_screener.data.fmp_client import FMPAuthError
 from pre_ipo_screener.data.polygon_client import PolygonAuthError
-from pre_ipo_screener.screener import historical, report, scoring, universe
+from pre_ipo_screener.screener import historical, live_tracker, report, scoring, universe
 from utils.logger import configure_logging
 from utils.state import load_state, save_state
+
+
+def _price_history_by_ticker(recent_with_perf: list) -> dict:
+    """Builds a ticker -> bars lookup (date/close) from compute_post_ipo_performance's
+    raw "bars" field, in the {date, open, close} shape live_tracker expects."""
+    lookup = {}
+    for candidate in recent_with_perf:
+        bars = candidate.get("bars") or []
+        normalized = [
+            {"date": bar.get("t") or bar.get("date"), "open": bar.get("o"), "close": bar.get("c")}
+            for bar in bars
+            if (bar.get("t") or bar.get("date")) is not None and bar.get("c") is not None
+        ]
+        if normalized:
+            lookup[candidate["ticker"]] = normalized
+    return lookup
 
 
 def _annotate_sector(client, candidates: list) -> list:
@@ -45,7 +61,16 @@ def run_weekly(client, logger, today: dt.date):
     long_candidates = scoring.rank_candidates(scored_long, key="score")
     short_candidates = _score_shorts(recent_with_perf, today)
 
-    content = report.render_report(long_candidates, short_candidates, analog_groups, today, mode="weekly")
+    price_history = _price_history_by_ticker(recent_with_perf)
+    tracker = live_tracker.load_tracker()
+    live_tracker.record_new_signals(tracker, long_candidates, short_candidates, today, price_history)
+    live_tracker.update_positions(tracker, price_history)
+    live_tracker.save_tracker(tracker)
+
+    content = report.render_report(
+        long_candidates, short_candidates, analog_groups, today, mode="weekly",
+        tracker_positions=tracker["positions"],
+    )
     path = report.save_report(content, today)
 
     save_state(
@@ -75,7 +100,16 @@ def run_daily(client, logger, today: dt.date):
     recent_with_perf = [historical.compute_post_ipo_performance(client, c, today) for c in recent]
     short_candidates = _score_shorts(recent_with_perf, today)
 
-    content = report.render_report(long_candidates, short_candidates, analog_groups, today, mode="daily")
+    price_history = _price_history_by_ticker(recent_with_perf)
+    tracker = live_tracker.load_tracker()
+    live_tracker.record_new_signals(tracker, long_candidates, short_candidates, today, price_history)
+    live_tracker.update_positions(tracker, price_history)
+    live_tracker.save_tracker(tracker)
+
+    content = report.render_report(
+        long_candidates, short_candidates, analog_groups, today, mode="daily",
+        tracker_positions=tracker["positions"],
+    )
     path = report.save_report(content, today)
     return content, path, long_candidates, short_candidates
 

@@ -61,12 +61,54 @@ def _analog_table(analog_groups: Dict[str, Dict[str, Any]]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _tracker_table(positions: List[Dict[str, Any]]) -> str:
+    if not positions:
+        return "_No signals tracked yet._\n"
+    open_positions = [p for p in positions if p["status"] == "open"]
+    closed_positions = [p for p in positions if p["status"] == "closed"]
+    lines: List[str] = []
+
+    if open_positions:
+        lines += [
+            "**Open:**",
+            "",
+            "| Ticker | Direction | Signal | Flagged | Entry | Current | Unrealized | Days Held |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for p in sorted(open_positions, key=lambda x: x["flagged_date"]):
+            entry = f"${p['entry_price']:.2f}" if p["entry_price"] is not None else "pending"
+            current = f"${p['current_price']:.2f}" if p["current_price"] is not None else "n/a"
+            lines.append(
+                f"| **{p['ticker']}** | {p['direction']} | {p['signal_type']} | {p['flagged_date']} | "
+                f"{entry} | {current} | {_fmt_pct(p['unrealized_return_pct'])} | {p['days_held']} |"
+            )
+        lines.append("")
+
+    if closed_positions:
+        lines += [
+            "**Closed:**",
+            "",
+            "| Ticker | Direction | Signal | Flagged | Entry | Exit | Return | Holding Days |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for p in sorted(closed_positions, key=lambda x: x["exit_date"] or ""):
+            lines.append(
+                f"| **{p['ticker']}** | {p['direction']} | {p['signal_type']} | {p['flagged_date']} | "
+                f"${p['entry_price']:.2f} | ${p['exit_price']:.2f} | {_fmt_pct(p['return_pct'])} | "
+                f"{p['holding_days']} |"
+            )
+        lines.append("")
+
+    return "\n".join(lines) + "\n"
+
+
 def render_report(
     long_candidates: List[Dict[str, Any]],
     short_candidates: List[Dict[str, Any]],
     analog_groups: Dict[str, Dict[str, Any]],
     run_date: Optional[dt.date] = None,
     mode: str = "weekly",
+    tracker_positions: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
     run_date = run_date or dt.date.today()
     sections = [
@@ -81,6 +123,18 @@ def render_report(
         "## Historical Pattern Reference (last ~120 days)",
         _analog_table(analog_groups),
     ]
+    if tracker_positions is not None:
+        sections += [
+            "## Signal Performance Tracker",
+            (
+                "_Forward-tracks every LONG/fade/lockup signal from the day it was first flagged. "
+                "Exits use the same trailing-stop + holding-window rules as the backtest "
+                f"(trailing stop {config.TRAILING_STOP_PCT:.0%}, momentum-fade hold "
+                f"{config.MOMENTUM_FADE_HOLD_DAYS}d, lockup hold {config.LOCKUP_SHORT_HOLD_DAYS}d, "
+                f"long watch hold {config.POSITION_EXIT_DAY}d)._\n"
+            ),
+            _tracker_table(tracker_positions),
+        ]
     return "\n".join(sections)
 
 
